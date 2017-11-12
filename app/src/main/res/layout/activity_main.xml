@@ -1,0 +1,117 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/AppTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+      >
+
+        <RelativeLayout
+            android:id="@+id/mainHead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/tvOfferian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_centerVertical="true"
+                    android:text="Offerian" />
+
+            <AutoCompleteTextView
+                android:id="@+id/autoComSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_bg"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tvOfferian"
+                android:paddingBottom="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:singleLine="true"
+                android:textColor="#000"
+                android:layout_toLeftOf="@+id/imgBell"
+                android:textColorHint="#fff"
+                android:visibility="gone"
+                android:textSize="@dimen/_12sdp" />
+
+            <ImageView
+                android:id="@+id/imgSearch"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imgBell"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:src="@drawable/ic_search_white_24dp"
+                android:visibility="visible"
+
+                />
+
+
+            <ImageView
+                android:id="@+id/imgBell"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:src="@drawable/ic_notifications_none_white_24dp"
+                android:visibility="visible"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <FrameLayout
+            android:id="@+id/containerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/shitstuff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/black"
+            >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+
+
+            </ScrollView>
+
+        </android.support.design.widget.NavigationView>
+    </android.support.v4.widget.DrawerLayout>
+
+
+
+
+
+</RelativeLayout>

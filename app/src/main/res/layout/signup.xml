@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="#01BCD1"
+        android:text="@string/welcome_join_offerian_now"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="@dimen/_25sdp"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="#fff"
+            android:background="@drawable/signup_button_bg"
+            android:text="@string/full_name"
+            android:inputType="textCapSentences"
+            android:padding="@dimen/_10sdp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="#fff"
+            android:background="@drawable/signup_button_bg"
+            android:text="@string/mobile_number"
+            android:inputType="textCapSentences"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="#fff"
+            android:inputType="textPassword"
+            android:background="@drawable/signup_button_bg"
+            android:text="dffg"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signup_button_bg"
+            android:padding="@dimen/_15sdp"
+            android:entries="@array/country_arrays"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:prompt="@string/country_prompt" />
+
+        <Spinner
+            android:id="@+id/spinnerGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signup_button_bg"
+            android:padding="@dimen/_15sdp"
+            android:entries="@array/country_arrays"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:prompt="@string/country_prompt" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="#fff"
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/signup_button_bg"
+            android:text="@string/submit"
+            android:layout_marginTop="@dimen/_25sdp"
+
+            />
+    </LinearLayout>
+
+</LinearLayout>

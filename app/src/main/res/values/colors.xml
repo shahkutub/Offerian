@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F43735</color>
+    <color name="colorPrimaryDark">#636365</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="black">#000</color>
+    <color name="orange">#FA0</color>
+    <color name="white">#FFF</color>
+    <color name="homTop">#00A750</color>
+    <color name="whiteMy">#FFFFFF</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="kalerkontho_actionbar">#00A750</color>
+    <color name="gray">#A9A9A9</color>
+    <color name="tab_background_selected">#3FA2EB</color>
+    <color name="tab_background_unselected">#BCBCBC</color>
+
+</resources>

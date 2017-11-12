@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3FA9F5"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/_20sdp"
+        >
+
+        <TextView
+            android:id="@+id/tvSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#636365"
+            android:text="SIGNUP"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            />
+
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FE6B35"
+            android:text="LOGIN"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            />
+
+    </LinearLayout>
+</RelativeLayout>
