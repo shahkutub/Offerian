@@ -1,8 +1,10 @@
 package com.sadi.offerian;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -11,7 +13,7 @@ import android.widget.TextView;
 
 public class SignUpActivity extends AppCompatActivity {
     Context con;
-    private TextView tvSignUp,tvLogin;
+    private TextView tvSubmit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,13 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initialization() {
+        tvSubmit = (TextView)findViewById(R.id.tvSubmit);
 
+        tvSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(con,MainActivity.class));
+            }
+        });
     }
 }
