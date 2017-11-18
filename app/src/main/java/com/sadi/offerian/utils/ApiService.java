@@ -1,6 +1,9 @@
 package com.sadi.offerian.utils;
 
 import com.sadi.offerian.model.DistrictsResponse;
+import com.sadi.offerian.model.DristictsNameModel;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -15,5 +18,5 @@ public interface ApiService {
     And our method that will return us the List of ContactList
     */
     @GET("api/apps/getalldistricts")
-    Call<DistrictsResponse> getMyJSON();
+    Call<List<DristictsNameModel>> getMyJSON();
 }
