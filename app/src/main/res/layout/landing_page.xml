@@ -16,8 +16,8 @@
         android:layout_marginBottom="@dimen/_20sdp"
         >
 
-        <TextView
-            android:id="@+id/tvSignUp"
+        <Button
+            android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#636365"
@@ -28,8 +28,8 @@
             />
 
 
-        <TextView
-            android:id="@+id/tvLogin"
+        <Button
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FE6B35"

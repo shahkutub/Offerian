@@ -8,8 +8,12 @@
     <string name="submit">SUBMIT</string>
 
     <string name="country_prompt">Choose a country</string>
+    <string name="gender_prompt">Choose a gender</string>
+    <string name="password">Password</string>
+    <string name="login">LogIn</string>
 
     <string-array name="country_arrays">
+        <item>Select Area</item>
         <item>Malaysia</item>
         <item>United States</item>
         <item>Indonesia</item>
@@ -20,5 +24,11 @@
         <item>India</item>
     </string-array>
 
+    <string-array name="gender_arrays">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+
+    </string-array>
 
 </resources>

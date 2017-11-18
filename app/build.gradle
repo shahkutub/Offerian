@@ -28,4 +28,10 @@ dependencies {
     compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
     compile 'com.intuit.sdp:sdp-android:1.0.4'
+    // GSON with Retrofit
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
+
 }

@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -20,8 +19,6 @@ import android.text.format.Formatter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -32,16 +29,13 @@ import static android.Manifest.permission_group.CAMERA;
  * Created by Sadi on 11/12/2017.
  */
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
     Context con;
-    private static final int PERMISSION_REQUEST_CODE = 200;
-    private View view;
-    private EditText etFullName, etMobile, etPassword;
-    private Button btnSubmit;
-    private Spinner spinnerArea, spinnerGender;
+    private EditText etMobileLogIn,etPassLogin;
+    private Button BtnLogin;
     private String ip_address, os_version, band_name, model, imei;
-    private static final int PERMISSION_CALLBACK_CONSTANT = 100;
-    private static final int REQUEST_PERMISSION_SETTING = 101;
+
+    private static final int PERMISSION_REQUEST_CODE = 200;
     String[] permissionsRequired = new String[]{Manifest.permission.CAMERA,
             ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_PHONE_STATE};
@@ -49,9 +43,9 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup);
+        setContentView(R.layout.signin);
 
-        con = this;
+        con  = this;
         initialization();
     }
 
@@ -76,44 +70,31 @@ public class SignUpActivity extends AppCompatActivity {
             requestPermission();
         }
 
+        etMobileLogIn = (EditText)findViewById(R.id.etMobileLogIn);
+        etPassLogin = (EditText)findViewById(R.id.etPassLogin);
 
-        etFullName = (EditText)findViewById(R.id.etFullName);
-        etMobile = (EditText)findViewById(R.id.etMobile);
-        etPassword = (EditText)findViewById(R.id.etPassword);
-        spinnerArea = (Spinner)findViewById(R.id.spinnerArea);
-        spinnerGender = (Spinner)findViewById(R.id.spinnerGender);
+        BtnLogin = (Button) findViewById(R.id.BtnLogin);
 
-        btnSubmit = (Button) findViewById(R.id.btnSubmit);
-
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        BtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(etFullName.getText().toString())){
+
+                if(TextUtils.isEmpty(etMobileLogIn.getText().toString())){
                     Toast.makeText(con, "Enter user name.", Toast.LENGTH_SHORT).show();
-                }else if(TextUtils.isEmpty(etMobile.getText().toString())){
-                    Toast.makeText(con, "Enter mobile your number.", Toast.LENGTH_SHORT).show();
-                }else if(TextUtils.isEmpty(etPassword.getText().toString())){
+                }else if(TextUtils.isEmpty(etPassLogin.getText().toString())){
                     Toast.makeText(con, "Enter password.", Toast.LENGTH_SHORT).show();
-                }else if(TextUtils.isEmpty(spinnerArea.getSelectedItem().toString()) &&
-                        spinnerArea.getSelectedItem().toString().equalsIgnoreCase("Select area")){
-                    Toast.makeText(con, "Select your Area.", Toast.LENGTH_SHORT).show();
-                }else if(TextUtils.isEmpty(spinnerGender.getSelectedItem().toString()) &&
-                        spinnerGender.getSelectedItem().toString().equalsIgnoreCase("Select gender")){
-                    Toast.makeText(con, "Select your gender.", Toast.LENGTH_SHORT).show();
                 }else {
-                    String username = etFullName.getText().toString();
-                    String mobile = etMobile.getText().toString();
-                    String password = etPassword.getText().toString();
-                    String area = spinnerArea.getSelectedItem().toString();
-                    String gender = spinnerGender.getSelectedItem().toString();
+                    String username = etMobileLogIn.getText().toString();
+                    String password = etPassLogin.getText().toString();
                 }
+
                 startActivity(new Intent(con,MainActivity.class));
             }
         });
-
     }
 
-        private boolean checkPermission() {
+
+    private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_FINE_LOCATION);
         int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
         int result2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_STATE);
@@ -143,7 +124,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(con, ""+imei, Toast.LENGTH_SHORT).show();
 
                     if (locationAccepted && cameraAccepted && readPhoneAccepted) {
-                       // Snackbar.make(view, "Permission Granted, Now you can access location data and camera.", Snackbar.LENGTH_LONG).show();
+                        // Snackbar.make(view, "Permission Granted, Now you can access location data and camera.", Snackbar.LENGTH_LONG).show();
                     } else {
 
                         //Snackbar.make(view, "Permission Denied, You cannot access location data and camera.", Snackbar.LENGTH_LONG).show();
@@ -174,7 +155,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(SignUpActivity.this)
+        new AlertDialog.Builder(con)
                 .setMessage(message)
                 .setPositiveButton("OK", okListener)
                 .setNegativeButton("Cancel", null)
