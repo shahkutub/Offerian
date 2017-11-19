@@ -1,8 +1,16 @@
 package com.sadi.offerian.utils;
 
 
+import com.sadi.offerian.model.DristictsNameModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppConstant {
+
+
+    public static List<DristictsNameModel> listDistrict = new ArrayList<>();
+
     public static final String[] FACEBOOK_PERMISSION = {"email", "user_about_me", "read_stream", "user_photos", "public_profile" };
     public static String COLOR_MAIN = "#A551D0";
     public static String id="id";

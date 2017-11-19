@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00bcd4"
-    >
+    android:background="#00bcd4">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="@dimen/_15sdp"
-        android:textColor="#01BCD1"
+        android:textColor="#fff"
         android:layout_marginTop="@dimen/_25sdp"
         android:text="@string/welcome_join_offerian_now"
         />
@@ -27,6 +28,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilFullNameLogIn"
             android:layout_width="match_parent"
+            android:textColorHint="@color/black"
+            app:hintTextAppearance="@style/TextLabel"
             android:layout_height="wrap_content">
 
         <EditText
@@ -48,6 +51,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilPasswordLogin"
             android:layout_width="match_parent"
+            android:textColorHint="@color/black"
+            app:hintTextAppearance="@style/TextLabel"
             android:layout_height="wrap_content">
         <EditText
             android:id="@+id/etPassLogin"

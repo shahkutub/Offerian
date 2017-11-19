@@ -4,24 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.sadi.offerian.model.DistrictsResponse;
 import com.sadi.offerian.model.DristictsNameModel;
 import com.sadi.offerian.retrofit.Api;
 import com.sadi.offerian.utils.AlertMessage;
-import com.sadi.offerian.utils.ApiService;
+import com.sadi.offerian.utils.AppConstant;
 import com.sadi.offerian.utils.BusyDialog;
 import com.sadi.offerian.utils.NetInfo;
-import com.sadi.offerian.utils.RetroClient;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,10 +56,9 @@ public class LandingActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(con,SignUpActivity.class));
+                startActivity(new Intent(con,SignInActivity.class));
             }
         });
-
 
 
         getDistricts();
@@ -95,6 +88,7 @@ public class LandingActivity extends AppCompatActivity {
             public void onResponse(Call<List<DristictsNameModel>> call, Response<List<DristictsNameModel>> response) {
                 List<DristictsNameModel> heroList = response.body();
 
+                AppConstant.listDistrict = heroList;
                 //Creating an String array for the ListView
                 String[] heroes = new String[heroList.size()];
 

@@ -18,11 +18,32 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.sadi.offerian.model.User;
+import com.sadi.offerian.retrofit.Api;
+import com.sadi.offerian.utils.AlertMessage;
+import com.sadi.offerian.utils.AppConstant;
+import com.sadi.offerian.utils.BusyDialog;
+import com.sadi.offerian.utils.NetInfo;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.READ_PHONE_STATE;
@@ -32,14 +53,14 @@ import static android.Manifest.permission_group.CAMERA;
  * Created by Sadi on 11/12/2017.
  */
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements Callback<User> {
     Context con;
     private static final int PERMISSION_REQUEST_CODE = 200;
     private View view;
     private EditText etFullName, etMobile, etPassword;
     private Button btnSubmit;
     private Spinner spinnerArea, spinnerGender;
-    private String ip_address, os_version, band_name, model, imei;
+    private String ip_address, os_version, band_name, model, imei,fullname,mobile,password,area,gender;
     private static final int PERMISSION_CALLBACK_CONSTANT = 100;
     private static final int REQUEST_PERMISSION_SETTING = 101;
     String[] permissionsRequired = new String[]{Manifest.permission.CAMERA,
@@ -83,37 +104,118 @@ public class SignUpActivity extends AppCompatActivity {
         spinnerArea = (Spinner)findViewById(R.id.spinnerArea);
         spinnerGender = (Spinner)findViewById(R.id.spinnerGender);
 
+        List<String> listdisName = new ArrayList<>();
+        List<String> listGender = new ArrayList<>();
+        listGender.add(0,"Select your gender");
+        listGender.add(1,"Male");
+        listGender.add(2,"Female");
+
+        listdisName.add(0,"Select your Area");
+
+        for(int i=0;i<AppConstant.listDistrict.size();i++){
+            listdisName.add(AppConstant.listDistrict.get(i).getName_en());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, listdisName);
+        ArrayAdapter<String> adapterGen = new ArrayAdapter<String>(this, R.layout.spinner_item, listGender);
+        spinnerArea.setAdapter(adapter);
+        spinnerGender.setAdapter(adapterGen);
+
+        spinnerArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                area = spinnerArea.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                gender = spinnerGender.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(TextUtils.isEmpty(etFullName.getText().toString())){
-                    Toast.makeText(con, "Enter user name.", Toast.LENGTH_SHORT).show();
+                    AlertMessage.showMessage(con,"Alert!","Enter Full name.");
                 }else if(TextUtils.isEmpty(etMobile.getText().toString())){
-                    Toast.makeText(con, "Enter mobile your number.", Toast.LENGTH_SHORT).show();
+                    AlertMessage.showMessage(con,"Alert!","Enter mobile your number.");
                 }else if(TextUtils.isEmpty(etPassword.getText().toString())){
-                    Toast.makeText(con, "Enter password.", Toast.LENGTH_SHORT).show();
-                }else if(TextUtils.isEmpty(spinnerArea.getSelectedItem().toString()) &&
-                        spinnerArea.getSelectedItem().toString().equalsIgnoreCase("Select area")){
-                    Toast.makeText(con, "Select your Area.", Toast.LENGTH_SHORT).show();
-                }else if(TextUtils.isEmpty(spinnerGender.getSelectedItem().toString()) &&
-                        spinnerGender.getSelectedItem().toString().equalsIgnoreCase("Select gender")){
-                    Toast.makeText(con, "Select your gender.", Toast.LENGTH_SHORT).show();
+                    AlertMessage.showMessage(con,"Alert!","Enter password.");
+                }else if(area.equalsIgnoreCase("Select your Area")){
+                    AlertMessage.showMessage(con,"Alert!","Select your Area.");
+                }else if(gender.equalsIgnoreCase("Select your gender")){
+                    AlertMessage.showMessage(con,"Alert!","Select your gender.");
+
                 }else {
-                    String username = etFullName.getText().toString();
-                    String mobile = etMobile.getText().toString();
-                    String password = etPassword.getText().toString();
-                    String area = spinnerArea.getSelectedItem().toString();
-                    String gender = spinnerGender.getSelectedItem().toString();
+                     fullname = etFullName.getText().toString();
+                     mobile = etMobile.getText().toString();
+                     password = etPassword.getText().toString();
+                     area = spinnerArea.getSelectedItem().toString();
+                     gender = spinnerGender.getSelectedItem().toString();
+
+                     signupToServer();
+                    startActivity(new Intent(con,MainActivity.class));
                 }
-                startActivity(new Intent(con,MainActivity.class));
+
             }
         });
 
     }
 
-        private boolean checkPermission() {
+    private void signupToServer() {
+
+        if(!NetInfo.isOnline(con)){
+            AlertMessage.showMessage(con,"Alert","No internet connection!");
+        }
+
+        final BusyDialog busyNow = new BusyDialog(con, true,false);
+        busyNow.show();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+                .build();
+
+        Api api = retrofit.create(Api.class);
+
+
+        // prepare call in Retrofit 2.0
+        try {
+            JSONObject paramObject = new JSONObject();
+            paramObject.put("email", "sample@gmail.com");
+            paramObject.put("pass", "4384984938943");
+
+            Call<User> userCall = api.getUser(paramObject.toString());
+            userCall.enqueue(this);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onResponse(Call<User> call, Response<User> response) {
+
+    }
+
+    @Override
+    public void onFailure(Call<User> call, Throwable t) {
+    }
+
+    private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_FINE_LOCATION);
         int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
         int result2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_STATE);

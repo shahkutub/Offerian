@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sadi.offerian.utils.AlertMessage;
+
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission_group.CAMERA;
@@ -80,15 +82,15 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(TextUtils.isEmpty(etMobileLogIn.getText().toString())){
-                    Toast.makeText(con, "Enter user name.", Toast.LENGTH_SHORT).show();
+                    AlertMessage.showMessage(con,"Alert!","Enter user name");
                 }else if(TextUtils.isEmpty(etPassLogin.getText().toString())){
-                    Toast.makeText(con, "Enter password.", Toast.LENGTH_SHORT).show();
+                    AlertMessage.showMessage(con,"Alert!","Enter password");
                 }else {
                     String username = etMobileLogIn.getText().toString();
                     String password = etPassLogin.getText().toString();
+                    startActivity(new Intent(con,MainActivity.class));
                 }
 
-                startActivity(new Intent(con,MainActivity.class));
             }
         });
     }
