@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,18 +27,27 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.sadi.offerian.model.User;
 import com.sadi.offerian.retrofit.Api;
 import com.sadi.offerian.utils.AlertMessage;
 import com.sadi.offerian.utils.AppConstant;
 import com.sadi.offerian.utils.BusyDialog;
+import com.sadi.offerian.utils.CustomRequest;
 import com.sadi.offerian.utils.NetInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
     private EditText etFullName, etMobile, etPassword;
     private Button btnSubmit;
     private Spinner spinnerArea, spinnerGender;
-    private String ip_address, os_version, band_name, model, imei,fullname,mobile,password,area,gender;
+    private String ip_address, os_version, band_name, model, imei,fullname,mobile,password,area,disid,gender;
     private static final int PERMISSION_CALLBACK_CONSTANT = 100;
     private static final int REQUEST_PERMISSION_SETTING = 101;
     String[] permissionsRequired = new String[]{Manifest.permission.CAMERA,
@@ -91,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
         if(checkPermission()){
             TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
             imei = String.valueOf(telephonyManager.getDeviceId());
-            Toast.makeText(con, ""+imei, Toast.LENGTH_SHORT).show();
+            Toast.makeText(con, ""+ip_address, Toast.LENGTH_SHORT).show();
 
         }else if(!checkPermission()){
             requestPermission();
@@ -124,6 +134,9 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 area = spinnerArea.getSelectedItem().toString();
+
+                //for()
+                disid = AppConstant.listDistrict.get(position).getBd_district_id();
             }
 
             @Override
@@ -166,16 +179,58 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
                      password = etPassword.getText().toString();
                      area = spinnerArea.getSelectedItem().toString();
                      gender = spinnerGender.getSelectedItem().toString();
+                    Map<String, String> params = new HashMap<>();
+                    params.put("full_name", fullname);
+                    params.put("mobile", mobile);
+                    params.put("bd_district_id", "18");
+                    params.put("gender", "1");
+                    params.put("password", password);
+                    params.put("ip_address", ip_address);
+                    params.put("os", "android");
+                    params.put("os_version", os_version);
+                    params.put("band_name", band_name);
+                    params.put("model", model);
+                    params.put("imei", imei);
+                    params.put("operator", "gp");
+                    params.put("screen_size", "355,750");
+//                     signupToServer();
+//                    startActivity(new Intent(con,MainActivity.class));
 
-                     signupToServer();
-                    startActivity(new Intent(con,MainActivity.class));
+                    RequestQueue requestQueue = Volley.newRequestQueue(con);
+                    CustomRequest jsObjRequest = new CustomRequest(Request.Method.POST, "http://offerian.com/api/apps/signup", params,
+                            createRequestSuccessListener(), createRequestErrorListener());
+                    requestQueue.add(jsObjRequest);
+
                 }
 
             }
+
+
         });
 
     }
 
+    private com.android.volley.Response.ErrorListener createRequestErrorListener() {
+        com.android.volley.Response.ErrorListener errorResponse = new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("response",""+error.toString());
+            }
+        };
+
+        return errorResponse;
+    }
+
+    private com.android.volley.Response.Listener<JSONObject> createRequestSuccessListener() {
+        com.android.volley.Response.Listener<JSONObject> response = new com.android.volley.Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e("response",""+response.toString());
+            }
+        };
+
+        return response;
+    }
     private void signupToServer() {
 
         if(!NetInfo.isOnline(con)){
@@ -283,4 +338,37 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
                 .create()
                 .show();
     }
+
+
+//    private void vollRequestPost(){
+//        RequestQueue queue = Volley.newRequestQueue(con);
+//        String url = "http://192.168.1.7/AndroidVolley/androidVolley.php";
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                // Display the response string.
+//                _response.setText(response);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                _response.setText("That didn't work!");
+//            }
+//        }) {
+//            //adding parameters to the request
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<>();
+//                params.put("name", _name.getText().toString());
+//                params.put("email", _email.getText().toString());
+//                return params;
+//            }
+//        };
+//        // Add the request to the RequestQueue.
+//        queue.add(stringRequest);
+//    }
+
+
+
+
 }
