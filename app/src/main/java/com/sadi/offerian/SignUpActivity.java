@@ -40,6 +40,7 @@ import com.sadi.offerian.utils.AppConstant;
 import com.sadi.offerian.utils.BusyDialog;
 import com.sadi.offerian.utils.CustomRequest;
 import com.sadi.offerian.utils.NetInfo;
+import com.sadi.offerian.utils.PersistData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -226,6 +227,15 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
             @Override
             public void onResponse(JSONObject response) {
                 Log.e("response",""+response.toString());
+
+                try {
+                    String status = response.get("status").toString();
+                    String session_id = response.get("session_id").toString();
+                    PersistData.setStringData(con,AppConstant.session_id,session_id);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         };
 

@@ -43,6 +43,7 @@ public class AppConstant {
 
     private static final char[] banglaDigits = {'০','১','২','৩','৪','৫','৬','৭','৮','৯'};
     private static final char[] englishDigits = {'0','1','2','3','4','5','6','7','8','9'};
+    public static String session_id;
 
 
     public  static final String getDigitBanglaFromEnglish(String number){
