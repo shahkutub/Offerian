@@ -22,7 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 
-import com.sadi.offerian.fragment.TabFragment;
+import com.sadi.offerian.fragment.TabFragmentMain;
 import com.sadi.offerian.utils.AppConstant;
 import com.sadi.offerian.utils.PersistData;
 
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
 
-        TabFragment fragment = new TabFragment();
+        TabFragmentMain fragment = new TabFragmentMain();
 
         Bundle bundle = new Bundle();
         bundle.putInt("pos", 0);
@@ -75,12 +75,14 @@ public class MainActivity extends AppCompatActivity {
         fragment.setArguments(bundle);
 
         mFragmentTransaction.replace(R.id.containerView, fragment).commit();
+
+
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
-                xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
+                xfragmentTransaction.replace(R.id.containerView, new TabFragmentMain()).commit();
 
                 return true;
             }

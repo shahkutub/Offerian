@@ -1,6 +1,5 @@
 package com.sadi.offerian.fragment;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -15,16 +14,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sadi.offerian.R;
-import com.sadi.offerian.utils.AppConstant;
 
 
-public class TabFragment extends Fragment {
+public class TabFragmentEdit extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 5;
+    public static int int_items = 3;
     private int fragmentPos=0;
-    private String tabTitles[] = new String[] { "Home", "Business","Offer", "Reword", "Review"};
+    private String tabTitles[] = new String[] { "Edit", "Order","Reword"};
     private MyAdapter adapter;
 
     @Override
@@ -139,11 +137,6 @@ public class TabFragment extends Fragment {
                 case 2 :
                     return new OfferFragment();
 
-                case 3 :
-                    return new RewordFragment();
-
-                case 4 :
-                    return new ReviewFragment();
           }
         return null;
         }
