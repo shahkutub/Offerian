@@ -36,10 +36,6 @@ public class TabFragmentEdit extends Fragment {
 
        // final Typeface face_reg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SolaimanLipi_reg.ttf");
 
-
-
-
-
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             fragmentPos = bundle.getInt("pos", 0);
