@@ -1,6 +1,7 @@
 package com.sadi.offerian;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.support.design.widget.NavigationView;
@@ -21,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.sadi.offerian.fragment.TabFragment;
 import com.sadi.offerian.utils.AppConstant;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentTransaction mFragmentTransaction;
     private ImageView imgBell,imgSearch;
     private AutoCompleteTextView autoComSearch;
+    private LinearLayout linProfile;
     private String[] searchItems = {"AZAD pharma","SADI pharma","Kamal pharma", "Azhar pharma", "Bahar pharma", "sumon pharma"};
 
     @Override
@@ -115,6 +118,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+
+        linProfile = (LinearLayout)findViewById(R.id.linProfile);
+
+        linProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(con,EditProfileActivity.class));
+            }
+        });
+
 
     }
 

@@ -71,6 +71,7 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
         BtnSubmitCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(con,MainActivity.class));
                 if(!TextUtils.isEmpty(etSmsCode.getText().toString())){
                     vollRequestPost();
                 }else {

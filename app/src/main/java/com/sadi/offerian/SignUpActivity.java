@@ -185,6 +185,8 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(con,SMScodeVarifyActivity.class));
+
                 if(TextUtils.isEmpty(etFullName.getText().toString())){
                     AlertMessage.showMessage(con,"Alert!","Enter Full name.");
                 }else if(TextUtils.isEmpty(etMobile.getText().toString())){
