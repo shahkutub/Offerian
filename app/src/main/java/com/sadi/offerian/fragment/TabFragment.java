@@ -1,32 +1,30 @@
 package com.sadi.offerian.fragment;
 
-/**
- * Created by NanoSoft on 11/23/2017.
- */
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
-        import android.graphics.Typeface;
-        import android.os.Bundle;
-        import android.support.design.widget.TabLayout;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentManager;
-        import android.support.v4.app.FragmentPagerAdapter;
-        import android.support.v4.view.ViewPager;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.TextView;
-
-        import com.sadi.offerian.R;
+import com.sadi.offerian.R;
+import com.sadi.offerian.utils.AppConstant;
 
 
-public class TabFragmentEdit extends Fragment {
+public class TabFragment extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 3;
+    public static int int_items = 5;
     private int fragmentPos=0;
-    private String tabTitles[] = new String[] { "Edit", "Order","Reword"};
+    private String tabTitles[] = new String[] { "Home", "Business","Offer", "Reword", "Review"};
     private MyAdapter adapter;
 
     @Override
@@ -34,11 +32,11 @@ public class TabFragmentEdit extends Fragment {
         /**
          *Inflate tab_layout and setup Views.
          */
-        View x =  inflater.inflate(R.layout.tab_layout,null);
-        tabLayout = x.findViewById(R.id.tabs);
-        viewPager = x.findViewById(R.id.viewpager);
+             View x =  inflater.inflate(R.layout.tab_layout,null);
+             tabLayout = x.findViewById(R.id.tabs);
+             viewPager = x.findViewById(R.id.viewpager);
 
-        // final Typeface face_reg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SolaimanLipi_reg.ttf");
+       // final Typeface face_reg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SolaimanLipi_reg.ttf");
 
 
 
@@ -51,8 +49,8 @@ public class TabFragmentEdit extends Fragment {
 
         adapter=new MyAdapter(getChildFragmentManager());
 
-        viewPager.setAdapter(adapter);
-        setPageItem(fragmentPos);
+            viewPager.setAdapter(adapter);
+            setPageItem(fragmentPos);
 
 
 
@@ -83,14 +81,14 @@ public class TabFragmentEdit extends Fragment {
             @Override
             public void run() {
 
-                tabLayout.setupWithViewPager(viewPager);
+                    tabLayout.setupWithViewPager(viewPager);
                 // Iterate over all tabs and set the custom view
                 for (int i = 0; i < tabLayout.getTabCount(); i++) {
                     TabLayout.Tab tab = tabLayout.getTabAt(i);
                     tab.setCustomView(adapter.getTabView(i));
 
                 }
-            }
+                   }
         });
 
         setPageItem(fragmentPos);
@@ -131,9 +129,9 @@ public class TabFragmentEdit extends Fragment {
 
             switch (position){
 
-                case 0 :
+              case 0 :
 
-                    return new EditProfileFragment();
+                  return new HomeFragment();
 
                 case 1 :
                     return new BusinessFragment();
@@ -141,8 +139,13 @@ public class TabFragmentEdit extends Fragment {
                 case 2 :
                     return new OfferFragment();
 
-            }
-            return null;
+                case 3 :
+                    return new RewordFragment();
+
+                case 4 :
+                    return new ReviewFragment();
+          }
+        return null;
         }
 
         @Override
@@ -154,7 +157,7 @@ public class TabFragmentEdit extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return tabTitles[position];
+                return tabTitles[position];
         }
 
         public View getTabView(int position) {

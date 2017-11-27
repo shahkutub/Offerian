@@ -13,7 +13,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
-        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_25sdp"
         >
 
         <Button

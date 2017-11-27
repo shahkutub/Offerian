@@ -43,6 +43,7 @@ import com.sadi.offerian.utils.AlertMessage;
 import com.sadi.offerian.utils.AppConstant;
 import com.sadi.offerian.utils.BusyDialog;
 import com.sadi.offerian.utils.CustomRequest;
+import com.sadi.offerian.utils.IPAddressUtils;
 import com.sadi.offerian.utils.NetInfo;
 import com.sadi.offerian.utils.PersistData;
 
@@ -75,7 +76,7 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
     private EditText etFullName, etMobile, etPassword;
     private Button btnSubmit;
     private Spinner spinnerArea, spinnerGender;
-    private String ip_address, os_version, band_name, model, imei,fullname,mobile,password,area,disid,gender;
+    private String ip_addressIPv4, os_version, band_name, model, imei,fullname,mobile,password,area,disid,gender;
     private static final int PERMISSION_CALLBACK_CONSTANT = 100;
     private static final int REQUEST_PERMISSION_SETTING = 101;
     String[] permissionsRequired = new String[]{Manifest.permission.CAMERA,
@@ -98,14 +99,15 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
 
     private void initialization() {
         @SuppressLint("WifiManagerLeak") WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
-        String ip_address = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-        Toast.makeText(con, ""+wm.getConnectionInfo().getIpAddress(), Toast.LENGTH_SHORT).show();
+        //String ip_address = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
         band_name = Build.MANUFACTURER;
         model = Build.MODEL;
         os_version = String.valueOf(Build.VERSION.SDK_INT);
         String versionRelease = Build.VERSION.RELEASE;
-//        requestPermission();
-//        checkPermission();
+
+        ip_addressIPv4 = IPAddressUtils.getIPAddress(true); // IPv4
+        String ip_addressIPv6 = IPAddressUtils.getIPAddress(false); // IPv6
+        Toast.makeText(con, "ip_addressIPv4:"+ip_addressIPv4+"ip_addressIPv6:"+ip_addressIPv6, Toast.LENGTH_SHORT).show();
 
         if(checkPermission()){
             TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
@@ -423,10 +425,10 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
                         try {
                             jsonObject = new JSONObject(response);
                             String status = jsonObject.getString("status");
-                            //int session_id = jsonObject.getInt("session_id");
+                            String session_id = jsonObject.getString("session_id");
                             //Toast.makeText(SignUpActivity.this, "string "+status, Toast.LENGTH_SHORT).show();
 
-                            // PersistData.setStringData(con,AppConstant.session_id,session_id);
+                            PersistData.setStringData(con,AppConstant.session_id,session_id);
 
                             if (status.equalsIgnoreCase("200")){
                                 Toast.makeText(SignUpActivity.this, "Wait please! verification code msg will send to you.", Toast.LENGTH_SHORT).show();

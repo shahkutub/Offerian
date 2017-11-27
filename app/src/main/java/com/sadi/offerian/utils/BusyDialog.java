@@ -24,7 +24,7 @@ public class BusyDialog {
 		dialog.setContentView(R.layout.busylayout);
 		dialog.setCancelable(cancelable);
 		dialog.setCanceledOnTouchOutside(cancelable);
-		busyText = (TextView) dialog.findViewById(R.id.busytextview);
+		busyText = dialog.findViewById(R.id.busytextview);
 		busyText.setText(text + "");
 		busyText.setTextColor(Color.WHITE);
 	}
@@ -41,7 +41,7 @@ public class BusyDialog {
 		dialog.setContentView(R.layout.busylayout);
 		dialog.setCancelable(cancelable);
 		dialog.setCanceledOnTouchOutside(cancelable);
-		busyText = (TextView) dialog.findViewById(R.id.busytextview);
+		busyText = dialog.findViewById(R.id.busytextview);
 		busyText.setText(text + "");
 		busyText.setTextColor(textColor);
 	}
@@ -73,7 +73,7 @@ public class BusyDialog {
 		dialog.setContentView(R.layout.busylayout);
 		dialog.setCancelable(cancelable);
 		dialog.setCanceledOnTouchOutside(cancelable);
-		busyText = (TextView) dialog.findViewById(R.id.busytextview);
+		busyText = dialog.findViewById(R.id.busytextview);
 		busyText.setText(text + "");
 		busyText.setTextColor(Color.WHITE);
 	}
@@ -97,7 +97,7 @@ public class BusyDialog {
 		dialog.setContentView(R.layout.busylayout);
 		dialog.setCancelable(cancelable);
 		dialog.setCanceledOnTouchOutside(cancelable);
-		busyText = (TextView) dialog.findViewById(R.id.busytextview);
+		busyText = dialog.findViewById(R.id.busytextview);
 		busyText.setText(text + "");
 		busyText.setTextColor(textColor);
 	}

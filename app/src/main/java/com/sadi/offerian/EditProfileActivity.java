@@ -1,15 +1,18 @@
 package com.sadi.offerian;
 
+/**
+ * Created by NanoSoft on 11/23/2017.
+ */
+
 import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.sadi.offerian.fragment.TabFragmentEdit;
-import com.sadi.offerian.fragment.TabFragmentMain;
 import com.sadi.offerian.utils.AppConstant;
 import com.sadi.offerian.utils.PersistData;
 
@@ -22,6 +25,7 @@ public class EditProfileActivity extends AppCompatActivity {
     Context con;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
+    private ImageView imgBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,15 @@ public class EditProfileActivity extends AppCompatActivity {
         fragment.setArguments(bundle);
 
         mFragmentTransaction.replace(R.id.containerViewProfile, fragment).commit();
+
+        imgBack = (ImageView)findViewById(R.id.imgBack);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 }

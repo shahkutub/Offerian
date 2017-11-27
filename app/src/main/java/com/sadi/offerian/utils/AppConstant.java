@@ -44,6 +44,8 @@ public class AppConstant {
     private static final char[] banglaDigits = {'০','১','২','৩','৪','৫','৬','৭','৮','৯'};
     private static final char[] englishDigits = {'0','1','2','3','4','5','6','7','8','9'};
     public static String session_id;
+    public static int CAMERA_RUNTIME_PERMISSION=2,WRITEEXTERNAL_PERMISSION_RUNTIME=3,LOCATION_PERMISSION=4;
+    public static boolean isGallery=false;
 
 
     public  static final String getDigitBanglaFromEnglish(String number){

@@ -44,9 +44,9 @@ public class HomeFragment extends Fragment {
 
 
     public void initUI() {
-        swipeRefreshLayout = (SwipeRefreshLayout) getView().findViewById(R.id.swipeRefreshLayout);
-        progressShow = (ProgressBar) getView().findViewById(R.id.progressShow);
-        mRecyclerView = (RecyclerView) getView().findViewById(R.id.recyclerview);
+        swipeRefreshLayout = getView().findViewById(R.id.swipeRefreshLayout);
+        progressShow = getView().findViewById(R.id.progressShow);
+        mRecyclerView = getView().findViewById(R.id.recyclerview);
 //
 //        Drawable dividerDrawable = ContextCompat.getDrawable(con, R.drawable.divider);
 //        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
