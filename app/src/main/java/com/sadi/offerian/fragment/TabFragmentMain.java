@@ -25,6 +25,7 @@ public class TabFragmentMain extends Fragment {
     public static int int_items = 5;
     private int fragmentPos=0;
     private String tabTitles[] = new String[] { "Home", "Business","Offer", "Reword", "Review"};
+    private int tabIcon[] = new int[] { R.mipmap.ic_home, R.mipmap.ic_home,R.mipmap.ic_home, R.mipmap.ic_home, R.mipmap.ic_home};
     private MyAdapter adapter;
 
     @Override

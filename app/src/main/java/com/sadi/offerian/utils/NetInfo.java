@@ -54,14 +54,7 @@ public final class NetInfo {
 
 		if (isConnected) {
 
-			if (isWiFi) {
-
-				return true;
-
-			} else {
-				return false;
-
-			}
+            return isWiFi;
 		}
 		return false;
 

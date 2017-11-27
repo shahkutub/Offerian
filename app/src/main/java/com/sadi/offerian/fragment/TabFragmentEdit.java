@@ -1,19 +1,23 @@
 package com.sadi.offerian.fragment;
 
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+/**
+ * Created by NanoSoft on 11/23/2017.
+ */
 
-import com.sadi.offerian.R;
+        import android.graphics.Typeface;
+        import android.os.Bundle;
+        import android.support.design.widget.TabLayout;
+        import android.support.v4.app.Fragment;
+        import android.support.v4.app.FragmentManager;
+        import android.support.v4.app.FragmentPagerAdapter;
+        import android.support.v4.view.ViewPager;
+        import android.util.Log;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.TextView;
+
+        import com.sadi.offerian.R;
 
 
 public class TabFragmentEdit extends Fragment {
@@ -30,11 +34,11 @@ public class TabFragmentEdit extends Fragment {
         /**
          *Inflate tab_layout and setup Views.
          */
-             View x =  inflater.inflate(R.layout.tab_layout,null);
-             tabLayout = (TabLayout) x.findViewById(R.id.tabs);
-             viewPager = (ViewPager) x.findViewById(R.id.viewpager);
+        View x =  inflater.inflate(R.layout.tab_layout,null);
+        tabLayout = x.findViewById(R.id.tabs);
+        viewPager = x.findViewById(R.id.viewpager);
 
-       // final Typeface face_reg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SolaimanLipi_reg.ttf");
+        // final Typeface face_reg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SolaimanLipi_reg.ttf");
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -43,8 +47,8 @@ public class TabFragmentEdit extends Fragment {
 
         adapter=new MyAdapter(getChildFragmentManager());
 
-            viewPager.setAdapter(adapter);
-            setPageItem(fragmentPos);
+        viewPager.setAdapter(adapter);
+        setPageItem(fragmentPos);
 
 
 
@@ -75,14 +79,14 @@ public class TabFragmentEdit extends Fragment {
             @Override
             public void run() {
 
-                    tabLayout.setupWithViewPager(viewPager);
+                tabLayout.setupWithViewPager(viewPager);
                 // Iterate over all tabs and set the custom view
                 for (int i = 0; i < tabLayout.getTabCount(); i++) {
                     TabLayout.Tab tab = tabLayout.getTabAt(i);
                     tab.setCustomView(adapter.getTabView(i));
 
                 }
-                   }
+            }
         });
 
         setPageItem(fragmentPos);
@@ -123,9 +127,9 @@ public class TabFragmentEdit extends Fragment {
 
             switch (position){
 
-              case 0 :
+                case 0 :
 
-                  return new HomeFragment();
+                    return new EditProfileFragment();
 
                 case 1 :
                     return new BusinessFragment();
@@ -133,8 +137,8 @@ public class TabFragmentEdit extends Fragment {
                 case 2 :
                     return new OfferFragment();
 
-          }
-        return null;
+            }
+            return null;
         }
 
         @Override
@@ -146,13 +150,13 @@ public class TabFragmentEdit extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-                return tabTitles[position];
+            return tabTitles[position];
         }
 
         public View getTabView(int position) {
             // Given you have a custom layout in `res/layout/custom_tab.xml` with a TextView and ImageView
             View v = LayoutInflater.from(getActivity()).inflate(R.layout.tab_title_layout, null);
-            TextView tv = (TextView) v.findViewById(R.id.tableTitle);
+            TextView tv = v.findViewById(R.id.tableTitle);
             final Typeface face_reg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SolaimanLipi_reg.ttf");
             tv.setTypeface(face_reg);
             tv.setText(tabTitles[position]);

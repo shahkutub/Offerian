@@ -33,22 +33,19 @@
             app:hintTextAppearance="@style/TextLabel"
             android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/etSmsCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:textSize="@dimen/_15sdp"
-            android:textColor="#000"
-            android:background="@drawable/signup_button_bg"
-            android:hint="SMS Code"
-            android:inputType="number"
-            android:padding="@dimen/_10sdp"
-            />
+            <EditText
+                android:id="@+id/etSmsCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="#000"
+                android:background="@drawable/signup_button_bg"
+                android:hint="SMS Code"
+                android:inputType="number"
+                android:padding="@dimen/_10sdp"
+                />
         </android.support.design.widget.TextInputLayout>
-
-
-
 
 
 

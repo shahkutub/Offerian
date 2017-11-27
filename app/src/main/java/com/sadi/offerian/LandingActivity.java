@@ -61,7 +61,7 @@ public class LandingActivity extends AppCompatActivity {
         });
 
 
-        getDistricts();
+        //getDistricts();
 
     }
 

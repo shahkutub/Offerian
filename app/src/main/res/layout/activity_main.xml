@@ -111,26 +111,107 @@
 
 
                     <LinearLayout
+                        android:id="@+id/linProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
+                        android:padding="@dimen/_8sdp"
+                        android:background="#C0C4C6"
                         >
                         <de.hdodenhof.circleimageview.CircleImageView
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:id="@+id/profile_image"
                             android:layout_width="96dp"
                             android:layout_height="96dp"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/sadi"
                             app:civ_border_width="2dp"
                             app:civ_border_color="#FF000000"/>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="User Name"
+                            android:text="Shah Kutub"
+                            android:textColor="@color/black"
                             />
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wallet point:100.00"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            />
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:text="Profile"
+                        android:textColor="#656565"
+                        android:background="#FEFEFE"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:gravity="left|center"
+                        android:drawableRight="@drawable/ic_forword"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:text="My Order"
+                        android:textColor="#656565"
+                        android:background="#FEFEFE"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:gravity="left|center"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:drawableRight="@drawable/ic_forword"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:text="My favorite"
+                        android:textColor="#656565"
+                        android:background="#FEFEFE"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:gravity="left|center"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:drawableRight="@drawable/ic_forword"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:text="My Business"
+                        android:textColor="#656565"
+                        android:background="#FEFEFE"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:gravity="left|center"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:drawableRight="@drawable/ic_forword"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:text="Settings"
+                        android:textColor="#656565"
+                        android:background="#FEFEFE"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:gravity="left|center"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:drawableRight="@drawable/ic_forword"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:text="Logout"
+                        android:textColor="#656565"
+                        android:background="#FEFEFE"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:gravity="left|center"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:drawableRight="@drawable/ic_forword"
+                        />
 
                 </LinearLayout>
 

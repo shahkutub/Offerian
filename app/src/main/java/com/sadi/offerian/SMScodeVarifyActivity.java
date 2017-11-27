@@ -43,7 +43,6 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
     Context con;
     EditText etSmsCode;
     private SmsVerifyCatcher smsVerifyCatcher;
-    Button BtnSubmitCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
         con = this;
         //init views
          etSmsCode = (EditText) findViewById(R.id.etSmsCode);
-         BtnSubmitCode = (Button) findViewById(R.id.BtnSubmitCode);
+         Button BtnSubmitCode = (Button) findViewById(R.id.BtnSubmitCode);
 
         //init SmsVerifyCatcher
         smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
@@ -72,6 +71,7 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
         BtnSubmitCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(con,MainActivity.class));
                 if(!TextUtils.isEmpty(etSmsCode.getText().toString())){
                     vollRequestPost();
                 }else {
