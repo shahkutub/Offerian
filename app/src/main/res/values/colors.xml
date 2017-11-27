@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00bcd4</color>
+    <color name="colorPrimary">#F33635</color>
     <color name="colorPrimaryDark">#636365</color>
     <color name="colorAccent">#FF4081</color>
 
@@ -14,7 +14,7 @@
     <color name="transparent">#00000000</color>
     <color name="kalerkontho_actionbar">#00A750</color>
     <color name="gray">#A9A9A9</color>
-    <color name="tab_background_selected">#3FA2EB</color>
-    <color name="tab_background_unselected">#BCBCBC</color>
+    <color name="tab_background_selected">#F45347</color>
+    <color name="tab_background_unselected">#F34335</color>
 
 </resources>

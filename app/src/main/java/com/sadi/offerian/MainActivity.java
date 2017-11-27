@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.sadi.offerian.fragment.TabFragment;
+import com.sadi.offerian.fragment.TabFragmentMain;
 import com.sadi.offerian.utils.AppConstant;
 import com.sadi.offerian.utils.PersistData;
 
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
 
-        TabFragment fragment = new TabFragment();
+        TabFragmentMain fragment = new TabFragmentMain();
 
         Bundle bundle = new Bundle();
         bundle.putInt("pos", 0);
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
-                xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
+                xfragmentTransaction.replace(R.id.containerView, new TabFragmentMain()).commit();
 
                 return true;
             }
