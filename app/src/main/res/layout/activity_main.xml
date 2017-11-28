@@ -151,7 +151,6 @@
                         android:background="#FEFEFE"
                         android:paddingLeft="@dimen/_15sdp"
                         android:gravity="left|center"
-                        android:drawableRight="@drawable/ic_forword"
                         />
                     <TextView
                         android:layout_width="match_parent"
@@ -162,7 +161,6 @@
                         android:paddingLeft="@dimen/_15sdp"
                         android:gravity="left|center"
                         android:layout_marginTop="@dimen/_2sdp"
-                        android:drawableRight="@drawable/ic_forword"
                         />
 
                     <TextView
@@ -174,7 +172,6 @@
                         android:paddingLeft="@dimen/_15sdp"
                         android:gravity="left|center"
                         android:layout_marginTop="@dimen/_2sdp"
-                        android:drawableRight="@drawable/ic_forword"
                         />
 
                     <TextView
@@ -186,7 +183,6 @@
                         android:paddingLeft="@dimen/_15sdp"
                         android:gravity="left|center"
                         android:layout_marginTop="@dimen/_2sdp"
-                        android:drawableRight="@drawable/ic_forword"
                         />
 
                     <TextView
@@ -198,7 +194,6 @@
                         android:paddingLeft="@dimen/_15sdp"
                         android:gravity="left|center"
                         android:layout_marginTop="@dimen/_2sdp"
-                        android:drawableRight="@drawable/ic_forword"
                         />
 
                     <TextView
@@ -210,7 +205,6 @@
                         android:paddingLeft="@dimen/_15sdp"
                         android:gravity="left|center"
                         android:layout_marginTop="@dimen/_2sdp"
-                        android:drawableRight="@drawable/ic_forword"
                         />
 
                 </LinearLayout>
