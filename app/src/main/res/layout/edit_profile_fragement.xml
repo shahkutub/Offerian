@@ -105,6 +105,7 @@
                             android:id="@+id/input_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:padding="@dimen/_5sdp"
                             android:background="@drawable/round_bg"
                             android:hint="Your Full Name" />
 
@@ -153,7 +154,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/round_bg"
-                            android:hint="Your ID" />
+                            android:hint="Your ID"
+                            android:padding="@dimen/_5sdp"
+                            />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -199,7 +202,10 @@
                             android:id="@+id/input_Designation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Your Designation" />
+                            android:hint="Your Designation"
+                            android:padding="@dimen/_5sdp"
+                            android:background="@drawable/round_bg"
+                            />
 
                     </android.support.design.widget.TextInputLayout>
 
