@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,11 +24,31 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.sadi.offerian.fragment.TabFragment;
 import com.sadi.offerian.fragment.TabFragmentMain;
 import com.sadi.offerian.utils.AppConstant;
+import com.sadi.offerian.utils.BusyDialog;
+import com.sadi.offerian.utils.NetInfo;
 import com.sadi.offerian.utils.PersistData;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,9 +59,15 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
     private ImageView imgBell,imgSearch;
+    private CircleImageView profile_image;
     private AutoCompleteTextView autoComSearch;
     private LinearLayout linProfile;
     private String[] searchItems = {"AZAD pharma","SADI pharma","Kamal pharma", "Azhar pharma", "Bahar pharma", "sumon pharma"};
+
+    private TextView tvProfile,tvMyOrder,tvMyFavorite,tvMyBusiness,tvSettings,tvLogOut,tvProName
+            ,tvWallet;
+
+    String profile_picture,full_name,reward_point,user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,15 +149,25 @@ public class MainActivity extends AppCompatActivity {
 
 
         linProfile = (LinearLayout)findViewById(R.id.linProfile);
+        tvProfile = (TextView)findViewById(R.id.tvProfile);
+        tvMyOrder = (TextView)findViewById(R.id.tvMyOrder);
+        tvMyBusiness = (TextView)findViewById(R.id.tvMyBusiness);
+        tvMyFavorite = (TextView)findViewById(R.id.tvMyFavorite);
+        tvSettings = (TextView)findViewById(R.id.tvSettings);
+        tvLogOut = (TextView)findViewById(R.id.tvLogOut);
+        tvLogOut = (TextView)findViewById(R.id.tvLogOut);
+        tvProName = (TextView)findViewById(R.id.tvProName);
+        tvWallet = (TextView)findViewById(R.id.tvWallet);
+        profile_image = (CircleImageView) findViewById(R.id.profile_image);
 
-        linProfile.setOnClickListener(new View.OnClickListener() {
+        tvProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(con,EditProfileActivity.class));
             }
         });
 
-
+        volleyRequestProfile();
     }
 
     private void autoComInit(final AutoCompleteTextView autoCompleteTextView) {
@@ -185,4 +222,53 @@ public class MainActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(
                 activity.getCurrentFocus().getWindowToken(), 0);
     }
+
+    private void volleyRequestProfile(){
+        final BusyDialog busyNow = new BusyDialog(con, true,false);
+        busyNow.show();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://offerian.com/api/apps/getuserdata/20";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        busyNow.dismis();
+
+                        Log.e("response",""+response);
+                        JSONObject jsonObject = null;
+
+                        try {
+                            jsonObject = new JSONObject(response);
+                            profile_picture = jsonObject.getString("profile_picture");
+                            full_name = jsonObject.getString("full_name");
+                            reward_point = jsonObject.getString("reward_point");
+                            user_name = jsonObject.getString("user_name");
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        tvProName.setText(full_name);
+                        tvWallet.setText("Wallet point:"+reward_point);
+                        if(profile_picture!=null){
+                            Picasso.with(con).load(profile_picture).into(profile_image);
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                busyNow.dismis();
+                //Toast.makeText(getApplicationContext(), "Slow net connection", Toast.LENGTH_SHORT).show();
+            }
+        }) ;
+
+        //NetworkInfo info = connectivity.getActiveNetworkInfo();
+        if (NetInfo.isOnline(con)) {
+            queue.add(stringRequest);
+        }
+    }
+
 }

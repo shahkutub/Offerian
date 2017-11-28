@@ -54,14 +54,11 @@ import java.util.Date;
 
 public class EditProfileFragment extends Fragment {
     private Context con;
-    private TextView tvName, tvId, tvDesignation, tvPhone, tvAddress, tvBloodGroup, tvDOB, tvEmail;
-    //private ImageView imgEditProfile;
-    private Button btnDateOfInterView;
-    private Spinner spinnerBloodgroup;
+    private TextView tvName, tvId, tvDesignation;
 
-    private TextInputLayout input_layout_name, input_layout_designation, input_layout_phone, input_layout_address,  input_layout_blood_group, input_layout_email, input_layout_id;
+    private TextInputLayout input_layout_name, input_layout_designation,input_layout_id;
 
-    private EditText input_name, input_id, input_Designation, input_phone, input_address, input_blood_group, input_email;
+    private EditText input_name, input_id, input_Designation;
 
     String name, designation, phone, address, bloodGroup, email, officerId, dob;
     String employeeDate;
@@ -106,12 +103,8 @@ public class EditProfileFragment extends Fragment {
         tvName.setText(name);
         tvId.setText(officerId);
         tvDesignation.setText(designation);
-        tvBloodGroup.setText(bloodGroup);
-        tvAddress.setText(address);
-        tvPhone.setText(phone);
-        tvEmail.setText(email);
-        tvDOB.setText(dob);
-        btnDateOfInterView.setText(dob);
+
+
     }
 
     public void initUI(View v) {
@@ -128,28 +121,6 @@ public class EditProfileFragment extends Fragment {
         input_layout_designation = (TextInputLayout) v.findViewById(R.id.input_layout_designation);
         input_Designation = (EditText) v.findViewById(R.id.input_Designation);
         tvDesignation = (TextView) v.findViewById(R.id.tvDesignation);
-
-        input_layout_phone = (TextInputLayout) v.findViewById(R.id.input_layout_phone);
-        input_phone = (EditText) v.findViewById(R.id.input_phone);
-        tvPhone = (TextView) v.findViewById(R.id.tvPhone);
-
-        input_layout_address = (TextInputLayout) v.findViewById(R.id.input_layout_address);
-        input_address = (EditText) v.findViewById(R.id.input_address);
-        tvAddress = (TextView) v.findViewById(R.id.tvAddress);
-
-        input_layout_blood_group = (TextInputLayout) v.findViewById(R.id.input_layout_blood_group);
-        input_blood_group = (EditText) v.findViewById(R.id.input_blood_group);
-        tvBloodGroup = (TextView) v.findViewById(R.id.tvBloodGroup);
-        spinnerBloodgroup = (Spinner)v.findViewById(R.id.spinnerBloodgroup);
-
-        tvDOB = (TextView) v.findViewById(R.id.tvDOB);
-        btnDateOfInterView = (Button) v.findViewById(R.id.btnDateOfInterView);
-
-
-        input_layout_email = (TextInputLayout) v.findViewById(R.id.input_layout_email);
-        input_email = (EditText) v.findViewById(R.id.input_email);
-        tvEmail = (TextView) v.findViewById(R.id.tvEmail);
-
 
 
         imgEditProfile = (ImageView) v.findViewById(R.id.imgEditProfile);
@@ -174,56 +145,10 @@ public class EditProfileFragment extends Fragment {
                 tvId.setVisibility(View.GONE);
                 input_layout_id.setVisibility(View.VISIBLE);
                 input_id.setText(officerId);
-
-
                 tvDesignation.setVisibility(View.GONE);
                 input_layout_designation.setVisibility(View.VISIBLE);
                 input_Designation.setText(designation);
 
-                tvPhone.setVisibility(View.GONE);
-                input_layout_phone.setVisibility(View.VISIBLE);
-                input_phone.setText(phone);
-
-                tvAddress.setVisibility(View.GONE);
-                input_layout_address.setVisibility(View.VISIBLE);
-                input_address.setText(address);
-
-                tvBloodGroup.setVisibility(View.GONE);
-                //input_layout_blood_group.setVisibility(View.VISIBLE);
-                //input_blood_group.setText(bloodGroup);
-                spinnerBloodgroup.setVisibility(View.VISIBLE);
-
-
-                tvDOB.setVisibility(View.GONE);
-                //  input_layout_dob.setVisibility(View.VISIBLE);
-                //   input_dob.setText(dob);
-                btnDateOfInterView.setVisibility(View.VISIBLE);
-
-                final Calendar myCalendar = Calendar.getInstance();
-                DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        myCalendar.set(Calendar.YEAR, year);
-                        myCalendar.set(Calendar.MONTH, monthOfYear);
-                        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        DateFormat dateFormat = new java.text.SimpleDateFormat("dd-MM-yyyy");
-                        employeeDate = dateFormat.format(myCalendar.getTime());
-                        btnDateOfInterView.setText(employeeDate);
-                    }
-                };
-                final DatePickerDialog d = new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
-
-                btnDateOfInterView.setText(dob);
-                btnDateOfInterView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        d.show();
-                    }
-                });
-
-                tvEmail.setVisibility(View.GONE);
-                input_layout_email.setVisibility(View.VISIBLE);
-                input_email.setText(email);
 
             }
         });

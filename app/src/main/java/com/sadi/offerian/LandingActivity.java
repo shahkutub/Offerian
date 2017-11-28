@@ -61,7 +61,7 @@ public class LandingActivity extends AppCompatActivity {
         });
 
 
-        //getDistricts();
+        getDistricts();
 
     }
 
@@ -113,94 +113,5 @@ public class LandingActivity extends AppCompatActivity {
         });
     }
 
-
-
-//    protected void registerServer(final String url) {
-//
-//        if (!NetInfo.isOnline(con)) {
-//            AlertMessage.showMessage(con,"Alert","No Internet connection");
-//            return;
-//        }
-//
-//        final BusyDialog busyNow = new BusyDialog(con, true,false);
-//        busyNow.show();
-//
-//        final AsyncHttpClient client = new AsyncHttpClient();
-//
-//        final RequestParams param = new RequestParams();
-//
-//        try {
-//
-////            param.put("email", etEmail.getText().toString());
-////            param.put("first_name", etFirstName.getText().toString());
-////            param.put("last_name", etLastName.getText().toString());
-////            param.put("password", etConfirmPass.getText().toString());
-////            param.put("contact_number", etPhone.getText().toString());
-////            param.put("device_type", "android");
-////            param.put("device_token", PersistData.getStringData(con,AppConstant.GCMID));
-////            param.put("login_type", "email");
-////            param.put("photo", new File(picture));
-//
-//            Log.e("","");
-//        } catch (final Exception e1) {
-//            e1.printStackTrace();
-//        }
-//
-//        client.post(url, param, new AsyncHttpResponseHandler() {
-//
-//            @Override
-//            public void onStart() {
-//                // called before request is started
-//            }
-//
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-//                if (busyNow != null) {
-//                    busyNow.dismis();
-//                }
-//                try {
-//                    Log.e("Response", ">>" + new String(response));
-//                    if (!TextUtils.isEmpty(new String(response))) {
-//                        Gson g = new Gson();
-//                        LoginResponse mLoginResponse = g.fromJson(new String(response), LoginResponse.class);
-//                        if (mLoginResponse.isStatus()) {
-//                            // PersistData.setStringData(con,AppConstant.loginRespone,response);
-//
-//
-//                            changeVisibility("photo");
-//
-//
-//                        }else {
-//                            AlertMessage.showMessage(con,getString(R.string.app_name),mLoginResponse.getMessage());
-//                        }
-//                    }
-//
-//                } catch (final Exception e) {
-//
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers,
-//                                  byte[] errorResponse, Throwable e) {
-//                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-//
-//                e.printStackTrace();
-//
-//                if (busyNow != null) {
-//                    busyNow.dismis();
-//                }
-//            }
-//
-//            @Override
-//            public void onRetry(int retryNo) {
-//                // called when request is retried
-//
-//            }
-//        });
-//
-//    }
 
 }

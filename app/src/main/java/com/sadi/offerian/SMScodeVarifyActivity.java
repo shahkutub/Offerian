@@ -42,7 +42,7 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
 
     Context con;
     EditText etSmsCode;
-    private SmsVerifyCatcher smsVerifyCatcher;
+   // private SmsVerifyCatcher smsVerifyCatcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +54,17 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
          Button BtnSubmitCode = (Button) findViewById(R.id.BtnSubmitCode);
 
         //init SmsVerifyCatcher
-        smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
-            @Override
-            public void onSmsCatch(String message) {
-                String code = parseCode(message);//Parse verification code
-                etSmsCode.setText(code);//set code in edit text
-                //then you can send verification code to server
-            }
-        });
+//        smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
+//            @Override
+//            public void onSmsCatch(String message) {
+//                String code = parseCode(message);//Parse verification code
+//                etSmsCode.setText(code);//set code in edit text
+//                //then you can send verification code to server
+//            }
+//        });
 
         //set phone number filter if needed
-        smsVerifyCatcher.setPhoneNumberFilter("+8804445600111");
+       // smsVerifyCatcher.setPhoneNumberFilter("+8804445600111");
         //smsVerifyCatcher.setFilter("regexp");
 
         //button for sending verification code manual
@@ -73,9 +73,10 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
             public void onClick(View v) {
                 startActivity(new Intent(con,MainActivity.class));
                 if(!TextUtils.isEmpty(etSmsCode.getText().toString())){
-                    vollRequestPost();
-                }else {
                     AlertMessage.showMessage(con,"Alert!","Enter sms code");
+
+                }else {
+                    vollRequestPost();
                 }
             }
         });
@@ -97,16 +98,29 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
         return code;
     }
 
+//    @Override
+//    public void onResume() {
+//        smsVerifyCatcher.onStart();
+//        //LocalBroadcastManager.getInstance(this).registerReceiver(receiver, new IntentFilter("otp"));
+//        super.onResume();
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        smsVerifyCatcher.onStart();
+//        //LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
+//    }
     @Override
     protected void onStart() {
         super.onStart();
-        smsVerifyCatcher.onStart();
+        //smsVerifyCatcher.onStart();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        smsVerifyCatcher.onStop();
+       // smsVerifyCatcher.onStop();
     }
 
     /**
@@ -115,7 +129,7 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        smsVerifyCatcher.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //smsVerifyCatcher.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 
@@ -130,27 +144,28 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
                     @Override
                     public void onResponse(String response) {
                         busyNow.dismis();
-                        Log.e("response",""+response);
-                        Toast.makeText(con, "json "+response, Toast.LENGTH_SHORT).show();
-
                         JSONObject jsonObject = null;
+                        int status = 0;
+                        int session_id = 0;
                         try {
                             jsonObject = new JSONObject(response);
-                            String status = jsonObject.getString("status");
-                            //int session_id = jsonObject.getInt("session_id");
-                            //Toast.makeText(SignUpActivity.this, "string "+status, Toast.LENGTH_SHORT).show();
-
-                            // PersistData.setStringData(con,AppConstant.session_id,session_id);
-
-//                            if (status.equalsIgnoreCase("200")){
-//                                Toast.makeText(SignUpActivity.this, "Wait please! verification code msg will send to you.", Toast.LENGTH_SHORT).show();
-//                                startActivity(new Intent(con,SMScodeVarifyActivity.class));
-//                            }else if(status.equalsIgnoreCase("201")){
-//                                Toast.makeText(SignUpActivity.this, "Mobile already exist", Toast.LENGTH_SHORT).show();
-//                                startActivity(new Intent(con,SMScodeVarifyActivity.class));
-//                            }
+                            status = jsonObject.getInt("status");
+                            session_id = jsonObject.getInt("session_id");
                         } catch (JSONException e) {
                             e.printStackTrace();
+                        }
+
+                        Log.e("session_id",""+session_id);
+
+                       // PersistData.setStringData(con,AppConstant.session_id,""+session_id);
+
+                        if (status==200){
+                            //Toast.makeText(con, "Wait please! verification code msg will send to you.", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(con,MainActivity.class));
+                        }
+                        if(status==201){
+                            Toast.makeText(con, "Wrong otp", Toast.LENGTH_SHORT).show();
+                            //startActivity(new Intent(con,SMScodeVarifyActivity.class));
                         }
 
                     }

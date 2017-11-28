@@ -14,7 +14,11 @@
     <color name="transparent">#00000000</color>
     <color name="kalerkontho_actionbar">#00A750</color>
     <color name="gray">#A9A9A9</color>
+
     <color name="tab_background_selected">#F45347</color>
     <color name="tab_background_unselected">#F34335</color>
+
+    <color name="tab_background_selected_edit">#C9DEC1</color>
+    <color name="tab_background_unselected_edit">#8BC24D</color>
 
 </resources>

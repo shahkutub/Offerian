@@ -15,6 +15,7 @@ package com.sadi.offerian.fragment;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.ImageView;
         import android.widget.TextView;
 
         import com.sadi.offerian.R;
@@ -27,6 +28,7 @@ public class TabFragmentEdit extends Fragment {
     public static int int_items = 3;
     private int fragmentPos=0;
     private String tabTitles[] = new String[] { "Edit", "Order","Reword"};
+    private int tabIcon[] = new int[] { R.drawable.ic_person_black_48dp, R.drawable.ic_message_black_48dp,R.drawable.ic_dialpad_black_48dp};
     private MyAdapter adapter;
 
     @Override
@@ -34,7 +36,7 @@ public class TabFragmentEdit extends Fragment {
         /**
          *Inflate tab_layout and setup Views.
          */
-        View x =  inflater.inflate(R.layout.tab_layout,null);
+        View x =  inflater.inflate(R.layout.tab_layout_edit,null);
         tabLayout = x.findViewById(R.id.tabs);
         viewPager = x.findViewById(R.id.viewpager);
 
@@ -156,10 +158,14 @@ public class TabFragmentEdit extends Fragment {
         public View getTabView(int position) {
             // Given you have a custom layout in `res/layout/custom_tab.xml` with a TextView and ImageView
             View v = LayoutInflater.from(getActivity()).inflate(R.layout.tab_title_layout, null);
-            TextView tv = v.findViewById(R.id.tableTitle);
+            TextView tv = (TextView) v.findViewById(R.id.tableTitle);
+            ImageView tabImg = (ImageView)v.findViewById(R.id.tabImg);
+
             final Typeface face_reg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SolaimanLipi_reg.ttf");
             tv.setTypeface(face_reg);
             tv.setText(tabTitles[position]);
+
+            tabImg.setImageResource(tabIcon[position]);
 
             return v;
         }

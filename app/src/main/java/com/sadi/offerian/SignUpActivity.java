@@ -50,7 +50,11 @@ import com.sadi.offerian.utils.PersistData;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +73,7 @@ import static android.Manifest.permission_group.CAMERA;
  * Created by Sadi on 11/12/2017.
  */
 
-public class SignUpActivity extends AppCompatActivity implements Callback<User> {
+public class SignUpActivity extends AppCompatActivity {
     Context con;
     private static final int PERMISSION_REQUEST_CODE = 200;
     private View view;
@@ -92,7 +96,7 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
 
         con = this;
         initialization();
-
+        getLocalIpAddress();
 
     }
 
@@ -108,6 +112,9 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
         ip_addressIPv4 = IPAddressUtils.getIPAddress(true); // IPv4
         String ip_addressIPv6 = IPAddressUtils.getIPAddress(false); // IPv6
         Toast.makeText(con, "ip_addressIPv4:"+ip_addressIPv4+"ip_addressIPv6:"+ip_addressIPv6, Toast.LENGTH_SHORT).show();
+
+        Log.e("ip_addressIPv4",ip_addressIPv4);
+        Log.e("ip_addressIPv6",ip_addressIPv6);
 
         if(checkPermission()){
             TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
@@ -185,7 +192,7 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(con,SMScodeVarifyActivity.class));
+                //startActivity(new Intent(con,SMScodeVarifyActivity.class));
 
                 if(TextUtils.isEmpty(etFullName.getText().toString())){
                     AlertMessage.showMessage(con,"Alert!","Enter Full name.");
@@ -204,7 +211,7 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
                      password = etPassword.getText().toString();
                      area = spinnerArea.getSelectedItem().toString();
                      gender = spinnerGender.getSelectedItem().toString();
-                    vollRequestPost();
+                    volleySignupRequestPost();
                 }
 
             }
@@ -214,131 +221,6 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
 
     }
 
-//    private void signUpToserver() {
-//
-//        busyDialog = new BusyDialog(con,false);
-//
-//        busyDialog.show();
-//
-////        Map<String, String> params = new HashMap<>();
-////        params.put("full_name", fullname);
-////        params.put("mobile", mobile);
-////        params.put("bd_district_id", disid);
-////        params.put("gender", gender);
-////        params.put("password", password);
-////        params.put("ip_address", ip_address);
-////        params.put("os", "android");
-////        params.put("os_version", os_version);
-////        params.put("band_name", band_name);
-////        params.put("model", model);
-////        params.put("imei", imei);
-////        params.put("operator", "gp");
-////        params.put("screen_size", "355,750");
-////                     signupToServer();
-////                    startActivity(new Intent(con,MainActivity.class));
-//
-//        Map<String, String> params = new HashMap<>();
-//        params.put("full_name", fullname);
-//        params.put("mobile", mobile);
-//        params.put("bd_district_id", disid);
-//        params.put("gender", gender);
-//        params.put("password", password);
-//        params.put("ip_address",  "122.122.122.122");
-//        params.put("imei", imei);
-//        params.put("operator", "gp");
-//        params.put("screen_size", "355,750");
-//
-//
-////        RequestQueue requestQueue = Volley.newRequestQueue(con);
-////        CustomRequest jsObjRequest = new CustomRequest(Request.Method.POST, "http://offerian.com/api/apps/signup", params,
-////                createRequestSuccessListener(), createRequestErrorListener());
-////        requestQueue.add(jsObjRequest);
-//    }
-//    private com.android.volley.Response.Listener<JSONObject> createRequestSuccessListener() {
-//        com.android.volley.Response.Listener<JSONObject> response = new com.android.volley.Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                busyDialog.dismis();
-//                Log.e("response",""+response.toString());
-//                try {
-//                    JSONObject jsonObject = new JSONObject(response);
-//                    String successValue = jsonObject.getString("success");
-//                    String message = jsonObject.getString("message");
-//
-//
-//                    String status = response.get("status").toString();
-//                    String session_id = response.get("session_id").toString();
-//                    PersistData.setStringData(con,AppConstant.session_id,session_id);
-//
-//                    if (status.equalsIgnoreCase("200") ){
-//                        Toast.makeText(SignUpActivity.this, "Wait please! verification code msg will send to you.", Toast.LENGTH_SHORT).show();
-//                        startActivity(new Intent(con,SMScodeVarifyActivity.class));
-//                    }else if(status.equalsIgnoreCase("201")){
-//                        Toast.makeText(SignUpActivity.this, "Mobile already exist", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        };
-//
-//        return response;
-//    }
-
-
-//    private com.android.volley.Response.ErrorListener createRequestErrorListener() {
-//        com.android.volley.Response.ErrorListener errorResponse = new com.android.volley.Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                busyDialog.dismis();
-//                Log.e("errorResponse",""+error.toString());
-//            }
-//        };
-//
-//        return errorResponse;
-//    }
-
-
-    private void signupToServer() {
-
-        if(!NetInfo.isOnline(con)){
-            AlertMessage.showMessage(con,"Alert","No internet connection!");
-        }
-
-        final BusyDialog busyNow = new BusyDialog(con, true,false);
-        busyNow.show();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
-                .build();
-
-        Api api = retrofit.create(Api.class);
-
-
-        // prepare call in Retrofit 2.0
-        try {
-            JSONObject paramObject = new JSONObject();
-            paramObject.put("email", "sample@gmail.com");
-            paramObject.put("pass", "4384984938943");
-
-            Call<User> userCall = api.getUser(paramObject.toString());
-            userCall.enqueue(this);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onResponse(Call<User> call, Response<User> response) {
-
-    }
-
-    @Override
-    public void onFailure(Call<User> call, Throwable t) {
-    }
 
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_FINE_LOCATION);
@@ -410,7 +292,7 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
     }
 
 
-    private void vollRequestPost(){
+    private void volleySignupRequestPost(){
         final BusyDialog busyNow = new BusyDialog(con, true,false);
         busyNow.show();
 
@@ -420,28 +302,34 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
                     @Override
                     public void onResponse(String response) {
                         busyNow.dismis();
-                        Log.e("response",""+response);
-                        Toast.makeText(SignUpActivity.this, "json "+response, Toast.LENGTH_SHORT).show();
+//                        Log.e("response",""+response);
+//                        Toast.makeText(SignUpActivity.this, "json "+response, Toast.LENGTH_SHORT).show();
+
 
                         JSONObject jsonObject = null;
+                        int status = 0;
+                        int session_id = 0;
                         try {
                             jsonObject = new JSONObject(response);
-                            String status = jsonObject.getString("status");
-                            String session_id = jsonObject.getString("session_id");
-                            //Toast.makeText(SignUpActivity.this, "string "+status, Toast.LENGTH_SHORT).show();
-
-                            PersistData.setStringData(con,AppConstant.session_id,session_id);
-
-                            if (status.equalsIgnoreCase("200")){
-                                Toast.makeText(SignUpActivity.this, "Wait please! verification code msg will send to you.", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(con,SMScodeVarifyActivity.class));
-                            }else if(status.equalsIgnoreCase("201")){
-                                Toast.makeText(SignUpActivity.this, "Mobile already exist", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(con,SMScodeVarifyActivity.class));
-                            }
+                             status = jsonObject.getInt("status");
+                            session_id = jsonObject.getInt("session_id");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+                            Log.e("session_id",""+session_id);
+
+                            PersistData.setStringData(con,AppConstant.session_id,""+session_id);
+
+                            if (status==200){
+                                Toast.makeText(SignUpActivity.this, "Wait please! verification code msg will send to you.", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(con,SMScodeVarifyActivity.class));
+                            }
+                            if(status==201){
+                                Toast.makeText(SignUpActivity.this, "Mobile already exist", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(con,SMScodeVarifyActivity.class));
+                            }
+
 
                     }
                 }, new com.android.volley.Response.ErrorListener() {
@@ -467,12 +355,31 @@ public class SignUpActivity extends AppCompatActivity implements Callback<User> 
                 return parameters;
             }
         };
-        //NetworkInfo info = connectivity.getActiveNetworkInfo();
+
         if (NetInfo.isOnline(con)) {
             queue.add(stringRequest);
         }
     }
 
+
+    public String getLocalIpAddress() {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress()) {
+                        String ip = Formatter.formatIpAddress(inetAddress.hashCode());
+                        Log.i("ip", "***** IP="+ ip);
+                        return ip;
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            Log.e("", ex.toString());
+        }
+        return null;
+    }
 
     }
 
