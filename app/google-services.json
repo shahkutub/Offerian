@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "145861099146",
+    "firebase_url": "https://offerian-a74d9.firebaseio.com",
+    "project_id": "offerian-a74d9",
+    "storage_bucket": "offerian-a74d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145861099146:android:c5f73ad561d08bfa",
+        "android_client_info": {
+          "package_name": "com.bynotech.offerian"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145861099146-ofprm72qhb19rolslvjp8jsdevh22bhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkLatrADhC88yuQ_JPgMSKLDq8TPWByis"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
