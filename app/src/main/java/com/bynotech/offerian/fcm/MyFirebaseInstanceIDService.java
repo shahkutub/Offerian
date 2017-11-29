@@ -2,6 +2,8 @@ package com.bynotech.offerian.fcm;
 
 import android.util.Log;
 
+import com.bynotech.offerian.utils.AppConstant;
+import com.bynotech.offerian.utils.PersistData;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
@@ -21,6 +23,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.e(TAG, "Refreshed token: " + refreshedToken);
 
+        PersistData.setStringData(getApplicationContext(), AppConstant.fcmToken,refreshedToken);
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
