@@ -33,12 +33,15 @@ public class LandingActivity extends AppCompatActivity {
     Context con;
     private Button btnSignUp,btnLogin;
     private ArrayList<DristictsNameModel> contactList;
+    public static LandingActivity landingActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
 
         con  = this;
+        landingActivity = this;
         initialization();
     }
 

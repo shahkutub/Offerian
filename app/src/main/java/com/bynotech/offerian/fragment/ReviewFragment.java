@@ -19,7 +19,6 @@ import com.bynotech.offerian.R;
 public class ReviewFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
-    private SwipeRefreshLayout swipeRefreshLayout;
     private LinearLayoutManager mLayoutManager;
     ProgressBar progressShow;
     private boolean isViewShown = false;
@@ -44,26 +43,26 @@ public class ReviewFragment extends Fragment {
 
 
     public void initUI() {
-        swipeRefreshLayout = getView().findViewById(R.id.swipeRefreshLayout);
-        progressShow = getView().findViewById(R.id.progressShow);
-        mRecyclerView = getView().findViewById(R.id.recyclerview);
+//        swipeRefreshLayout = getView().findViewById(R.id.swipeRefreshLayout);
+//        progressShow = getView().findViewById(R.id.progressShow);
+//        mRecyclerView = getView().findViewById(R.id.recyclerview);
+////
+////        Drawable dividerDrawable = ContextCompat.getDrawable(con, R.drawable.divider);
+////        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
+////        mRecyclerView.addItemDecoration(dividerItemDecoration);
 //
-//        Drawable dividerDrawable = ContextCompat.getDrawable(con, R.drawable.divider);
-//        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
-//        mRecyclerView.addItemDecoration(dividerItemDecoration);
-
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(con);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                bgflag = true;
-               // requestGetNeslist(AllURL.getHomeNews());
-            }
-        });
+//        mRecyclerView.setHasFixedSize(true);
+//        mLayoutManager = new LinearLayoutManager(con);
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+//
+//
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                bgflag = true;
+//               // requestGetNeslist(AllURL.getHomeNews());
+//            }
+//        });
 
 
     }

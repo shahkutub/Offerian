@@ -41,7 +41,7 @@
             android:textColor="#000"
             android:background="@drawable/signup_button_bg"
             android:hint="@string/mobile_number"
-            android:inputType="textCapSentences"
+            android:inputType="phone"
             android:padding="@dimen/_10sdp"
             />
         </android.support.design.widget.TextInputLayout>

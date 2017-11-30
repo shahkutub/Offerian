@@ -98,7 +98,7 @@ public class LocationMgr implements
     public void onLocationChanged(Location location) {
         PersistData.setStringData(context, AppConstant.lat,""+location.getLatitude());
         PersistData.setStringData(context, AppConstant.lng,""+location.getLongitude());
-        Toast.makeText(context, ""+location.getLatitude()+""+location.getLongitude(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, ""+location.getLatitude()+""+location.getLongitude(), Toast.LENGTH_SHORT).show();
         //tvLatLng.setText(location.getLatitude()+"\n"+location.getLongitude());
     }
 

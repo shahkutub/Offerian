@@ -58,7 +58,7 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         EditText et1=new EditText(this);
-        et1.setBackgroundColor(Color.parseColor("#000"));
+        //et1.setBackgroundColor(Color.parseColor("#000"));
         et1.setLayoutParams(lparams);
         lineCode.addView(et1);
         //init SmsVerifyCatcher
@@ -142,6 +142,9 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
 
 
     private void vollRequestPost(){
+        if(!NetInfo.isOnline(con)){
+            AlertMessage.showMessage(con,"Alert!","No internet Connection");
+        }
         final BusyDialog busyNow = new BusyDialog(con, true,false);
         busyNow.show();
 
@@ -170,10 +173,12 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
                         if (status==200){
                             //Toast.makeText(con, "Wait please! verification code msg will send to you.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(con, MainActivity.class));
+                            finish();
                         }
                         if(status==201){
                             Toast.makeText(con, "Wrong otp", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(con,MainActivity.class));
+                            finish();
                         }
 
                     }

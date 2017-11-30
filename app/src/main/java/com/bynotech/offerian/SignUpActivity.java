@@ -16,8 +16,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.Formatter;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -65,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText etFullName, etMobile, etPassword;
     private Button btnSubmit;
     private Spinner spinnerArea, spinnerGender;
-    private String ip_addressIPv4, os_version, band_name, model, imei,fullname,mobile,password,area,disid,gender;
+    private String ip_addressIPv4, os_version, band_name, model,screen_size,imei,fullname,mobile,password,area,disid,gender;
     private static final int PERMISSION_CALLBACK_CONSTANT = 100;
     private static final int REQUEST_PERMISSION_SETTING = 101;
     String[] permissionsRequired = new String[]{Manifest.permission.CAMERA,
@@ -96,10 +99,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         ip_addressIPv4 = IPAddressUtils.getIPAddress(true); // IPv4
         String ip_addressIPv6 = IPAddressUtils.getIPAddress(false); // IPv6
-        Toast.makeText(con, "ip_addressIPv4:"+ip_addressIPv4+"ip_addressIPv6:"+ip_addressIPv6, Toast.LENGTH_SHORT).show();
-
+        //Toast.makeText(con, "ip_addressIPv4:"+ip_addressIPv4+"ip_addressIPv6:"+ip_addressIPv6, Toast.LENGTH_SHORT).show();
         Log.e("ip_addressIPv4",ip_addressIPv4);
         Log.e("ip_addressIPv6",ip_addressIPv6);
+        screen_size = getScreenResolution(con);
 
         if(checkPermission()){
             TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
@@ -287,7 +290,7 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         busyNow.dismis();
-//                        Log.e("response",""+response);
+                        Log.e("response",""+response);
 //                        Toast.makeText(SignUpActivity.this, "json "+response, Toast.LENGTH_SHORT).show();
 
 
@@ -309,12 +312,13 @@ public class SignUpActivity extends AppCompatActivity {
                             if (status==200){
                                 Toast.makeText(SignUpActivity.this, "Wait please! verification code msg will send to you.", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(con, SMScodeVarifyActivity.class));
+                                finish();
                             }
                             if(status==201){
                                 Toast.makeText(SignUpActivity.this, "Mobile already exist", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(con,SMScodeVarifyActivity.class));
+                                finish();
                             }
-
 
                     }
                 }, new com.android.volley.Response.ErrorListener() {
@@ -333,10 +337,17 @@ public class SignUpActivity extends AppCompatActivity {
                 parameters.put("bd_district_id", disid);
                 parameters.put("gender", gender);
                 parameters.put("password", password);
+                parameters.put("reffered_by", "");
                 parameters.put("ip_address",  "122.122.122.122");
+                parameters.put("os",  "android");
+                parameters.put("os_version",  os_version);
+                parameters.put("band_name",  band_name);
+                parameters.put("divice_name",  band_name);
+                parameters.put("model",  model);
                 parameters.put("imei", imei);
+                parameters.put("fcm_token", PersistData.getStringData(con,AppConstant.fcmToken));
                 parameters.put("operator", "gp");
-                parameters.put("screen_size", "355,750");
+                parameters.put("screen_size", screen_size);
                 return parameters;
             }
         };
@@ -346,7 +357,18 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-
+    private String getScreenResolution(Context context)
+    {
+        String sc_size="";
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        display.getMetrics(metrics);
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+        sc_size = String.valueOf(width)+","+String.valueOf(height);
+        return sc_size;
+    }
     public String getLocalIpAddress() {
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {

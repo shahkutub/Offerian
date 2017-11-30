@@ -29,6 +29,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -52,6 +53,7 @@ import com.bynotech.offerian.utils.AppConstant;
 import com.bynotech.offerian.utils.LocationMgr;
 import com.bynotech.offerian.utils.NetInfo;
 import com.bynotech.offerian.utils.PersistData;
+import com.bynotech.offerian.utils.PersistentUser;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -262,11 +264,18 @@ public class MainActivity extends AppCompatActivity{
         tvMyFavorite = (TextView)findViewById(R.id.tvMyFavorite);
         tvSettings = (TextView)findViewById(R.id.tvSettings);
         tvLogOut = (TextView)findViewById(R.id.tvLogOut);
-        tvLogOut = (TextView)findViewById(R.id.tvLogOut);
         tvProName = (TextView)findViewById(R.id.tvProName);
         tvWallet = (TextView)findViewById(R.id.tvWallet);
         profile_image = (CircleImageView) findViewById(R.id.profile_image);
 
+        tvLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PersistentUser.logOut(con);
+                PersistData.setStringData(con,AppConstant.session_id,"");
+                finish();
+            }
+        });
         tvProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -276,6 +285,8 @@ public class MainActivity extends AppCompatActivity{
 
         volleyRequestProfile();
     }
+
+
 
     private void autoComInit(final AutoCompleteTextView autoCompleteTextView) {
 
@@ -378,5 +389,43 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    public void exitFromApp() {
+        final CharSequence[] items = { "NO", "YES" };
+        final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+        builder.setTitle("Exit from app?");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                switch (item) {
+                    case 0:
+                        return;
+                    case 1:
+                        // onStopRecording();
+                        LandingActivity.landingActivity.finish();
+                        finish();
+
+
+                        break;
+                    default:
+                        return;
+                }
+            }
+        });
+        builder.show();
+        builder.create();
+    }
+
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            if(buttonView.getVisibility()==View.GONE){
+//                buttonView.setVisibility(View.VISIBLE);
+//            }else {
+            exitFromApp();
+            // }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }

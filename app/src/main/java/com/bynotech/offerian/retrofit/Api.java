@@ -1,14 +1,15 @@
 package com.bynotech.offerian.retrofit;
 
+import com.bynotech.offerian.model.BusinessInfo;
 import com.bynotech.offerian.model.DristictsNameModel;
-import com.bynotech.offerian.model.User;
+import com.bynotech.offerian.model.OfferInfo;
 
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
@@ -22,8 +23,23 @@ public interface Api {
     @GET("api/apps/getalldistricts")
     Call<List<DristictsNameModel>> getMyJSON();
 
+//    @POST("/api/apps/alloffer")
+//    Call<List<OfferInfo>> getAllOffers();
 
-    @Headers("Content-Type: application/json")
-    @POST("api/apps/signup")
-    Call<User> getUser(@Body String body);
+    @FormUrlEncoded
+    @POST("/api/apps/alloffer")
+    Call<List<OfferInfo>> getAllOffers(
+            @Field("session_id") String session_id,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude
+    );
+
+    @FormUrlEncoded
+    @POST("/api/apps/allbusiness")
+    Call<List<BusinessInfo>> getAllBusiness(
+            @Field("session_id") String session_id,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude
+    );
+
 }
