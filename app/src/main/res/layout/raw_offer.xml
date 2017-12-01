@@ -18,42 +18,45 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/img_product_photo"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="@dimen/_120sdp"
             android:src="@drawable/img_hotel"
             android:scaleType="fitXY"
             ></ImageView>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_125sdp"
+            android:layout_marginTop="@dimen/_105sdp"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tvItemType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hotel"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
                 android:background="#E74C3C"
-                android:padding="@dimen/_5sdp"
+                android:padding="@dimen/_3sdp"
                 android:layout_toLeftOf="@id/imgLogo"
                 />
             <ImageView
                 android:id="@+id/imgLogo"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:src="@drawable/img_britto"
                 android:scaleType="fitXY"
                 android:layout_centerInParent="true"
                 ></ImageView>
             <TextView
+                android:id="@+id/tvOfferLft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hotel"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:background="#E74C3C"
-                android:padding="@dimen/_5sdp"
+                android:padding="@dimen/_3sdp"
                 android:layout_toRightOf="@id/imgLogo"
                 />
         </RelativeLayout>
@@ -61,17 +64,18 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/tvDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_5sdp"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         android:text="lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor"
         />
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tvPoint"
@@ -103,7 +107,17 @@
             android:layout_marginLeft="@dimen/_15sdp"
             android:src="@drawable/ic_location_on_white_24dp"
             />
-
+        <TextView
+            android:id="@+id/tvMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_2sdp"
+            android:padding="@dimen/_10sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="More"
+            android:background="@drawable/raw_border_shadow"
+            />
     </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
