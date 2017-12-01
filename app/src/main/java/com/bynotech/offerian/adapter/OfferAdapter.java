@@ -2,6 +2,7 @@ package com.bynotech.offerian.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MovieViewHol
     TextView tvGrandTotal;
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
         LinearLayout allOrderLayout;
-        TextView tvItemType,tvOfferLft,tvDescription,tvPoint,tvMore;
+        TextView tvItemType,tvOfferLft,tvDescription,tvPoint,tvMore,tvCamp_ribon;
         ImageView img_product_photo,imgLogo;
         public MovieViewHolder(View v) {
             super(v);
@@ -41,6 +42,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MovieViewHol
             tvDescription = (TextView) v.findViewById(R.id.tvDescription);
             tvPoint = (TextView) v.findViewById(R.id.tvPoint);
             tvMore = (TextView) v.findViewById(R.id.tvMore);
+            tvCamp_ribon = (TextView) v.findViewById(R.id.tvCamp_ribon);
         }
     }
 
@@ -78,6 +80,13 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MovieViewHol
         holder.tvOfferLft.setText(offerData.getOffer_left()+" left only");
         holder.tvDescription.setText(offerData.getDescription());
         holder.tvPoint.setText(offerData.getReward_point()+" points");
+
+        if(!TextUtils.isEmpty(offerData.getCampaign_ribon())){
+            holder.tvCamp_ribon.setVisibility(View.VISIBLE);
+            holder.tvCamp_ribon.setText(offerData.getCampaign_ribon());
+        }else {
+            holder.tvCamp_ribon.setVisibility(View.GONE);
+        }
 
         if(listOfferInfo.size()>0){
 
