@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bynotech.offerian.R;
 import com.bynotech.offerian.model.OfferInfo;
+import com.bynotech.offerian.utils.AppConstant;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -99,7 +100,12 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MovieViewHol
             }
         }
 
-
+        holder.img_product_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppConstant.offerId = offerData.getOffer_id();
+            }
+        });
 //        holder.allOrderLayout.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
