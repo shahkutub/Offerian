@@ -49,6 +49,7 @@ public class AppConstant {
     public static String lat;
     public static String lng;
     public static String fcmToken;
+    public static String offerId;
 
 
     public  static final String getDigitBanglaFromEnglish(String number){

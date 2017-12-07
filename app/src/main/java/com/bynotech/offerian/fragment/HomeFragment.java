@@ -5,7 +5,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bynotech.offerian.R;
+import com.bynotech.offerian.adapter.OfferAdapter;
 import com.bynotech.offerian.model.DristictsNameModel;
 import com.bynotech.offerian.model.OfferInfo;
 import com.bynotech.offerian.retrofit.Api;
@@ -24,6 +27,7 @@ import com.bynotech.offerian.utils.AppConstant;
 import com.bynotech.offerian.utils.BusyDialog;
 import com.bynotech.offerian.utils.NetInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,17 +36,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.widget.LinearLayout.VERTICAL;
+
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView mRecyclerView;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private RecyclerView recyclerviewOffer;
     private LinearLayoutManager mLayoutManager;
-    ProgressBar progressShow;
-    private boolean isViewShown = false;
     Context con;
-    private boolean bgflag = false;
-
+    private OfferAdapter adapter;
+    //private List<OfferInfo> reGenerationInfos = new ArrayList<>();
 
 
     @Nullable
@@ -61,26 +64,9 @@ public class HomeFragment extends Fragment {
 
 
     public void initUI() {
-//        swipeRefreshLayout = getView().findViewById(R.id.swipeRefreshLayout);
-//        progressShow = getView().findViewById(R.id.progressShow);
-//        mRecyclerView = getView().findViewById(R.id.recyclerview);
-//
-//        Drawable dividerDrawable = ContextCompat.getDrawable(con, R.drawable.divider);
-//        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
-//        mRecyclerView.addItemDecoration(dividerItemDecoration);
-
-//        mRecyclerView.setHasFixedSize(true);
-//        mLayoutManager = new LinearLayoutManager(con);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
+        recyclerviewOffer = getView().findViewById(R.id.recyclerviewOffer);
 
 
-//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                bgflag = true;
-//               // requestGetNeslist(AllURL.getHomeNews());
-//            }
-//        });
         getAllOffers();
 
     }
@@ -107,6 +93,18 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<List<OfferInfo>> call, Response<List<OfferInfo>> response) {
                 List<OfferInfo> offerInfoList = response.body();
 
+
+                LinearLayoutManager layoutManager
+                        = new LinearLayoutManager(getActivity(), VERTICAL, false);
+                recyclerviewOffer.setLayoutManager(layoutManager);
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(con,
+                        layoutManager.getOrientation());
+                dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider_line));
+
+                recyclerviewOffer.addItemDecoration(dividerItemDecoration);
+                adapter = new OfferAdapter(offerInfoList,R.layout.raw_offer,con);
+
+                recyclerviewOffer.setAdapter(adapter);;
                 for (int i = 0; i < offerInfoList.size(); i++) {
                     //heroes[i] = heroList.get(i).getName_en();
                     Log.e("Company name",""+offerInfoList.get(i).getCompany_name());

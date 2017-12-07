@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.bynotech.offerian.R;
+import com.bynotech.offerian.adapter.BusinessAdapter;
+import com.bynotech.offerian.adapter.OfferAdapter;
 import com.bynotech.offerian.model.BusinessInfo;
 import com.bynotech.offerian.model.OfferInfo;
 import com.bynotech.offerian.retrofit.Api;
@@ -29,10 +33,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.widget.LinearLayout.VERTICAL;
+
 
 public class BusinessFragment extends Fragment {
 
-    private RecyclerView mRecyclerView;
+    private RecyclerView recyclerviewBusiness;
     private LinearLayoutManager mLayoutManager;
     ProgressBar progressShow;
     private boolean isViewShown = false;
@@ -57,26 +63,7 @@ public class BusinessFragment extends Fragment {
 
 
     public void initUI() {
-//        swipeRefreshLayout = getView().findViewById(R.id.swipeRefreshLayout);
-//        progressShow = getView().findViewById(R.id.progressShow);
-//        mRecyclerView = getView().findViewById(R.id.recyclerview);
-////
-////        Drawable dividerDrawable = ContextCompat.getDrawable(con, R.drawable.divider);
-////        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
-////        mRecyclerView.addItemDecoration(dividerItemDecoration);
-//
-//        mRecyclerView.setHasFixedSize(true);
-//        mLayoutManager = new LinearLayoutManager(con);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//
-//
-//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                bgflag = true;
-//               // requestGetNeslist(AllURL.getHomeNews());
-//            }
-//        });
+        recyclerviewBusiness = (RecyclerView)getView().findViewById(R.id.recyclerviewBusiness);
 
         getAllBusiness();
     }
@@ -105,6 +92,18 @@ public class BusinessFragment extends Fragment {
             public void onResponse(Call<List<BusinessInfo>> call, Response<List<BusinessInfo>> response) {
                 List<BusinessInfo> offerInfoList = response.body();
 
+
+                LinearLayoutManager layoutManager
+                        = new LinearLayoutManager(getActivity(), VERTICAL, false);
+                recyclerviewBusiness.setLayoutManager(layoutManager);
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(con,
+                        layoutManager.getOrientation());
+                dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider_line));
+
+                recyclerviewBusiness.addItemDecoration(dividerItemDecoration);
+                BusinessAdapter adapter = new BusinessAdapter(offerInfoList, R.layout.raw_business_directory, con);
+
+                recyclerviewBusiness.setAdapter(adapter);;
                 for (int i = 0; i < offerInfoList.size(); i++) {
                     //heroes[i] = heroList.get(i).getName_en();
                     Log.e("name",""+offerInfoList.get(i).getName());
