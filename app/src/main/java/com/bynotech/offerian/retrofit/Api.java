@@ -3,6 +3,7 @@ package com.bynotech.offerian.retrofit;
 import com.bynotech.offerian.model.BusinessInfo;
 import com.bynotech.offerian.model.DristictsNameModel;
 import com.bynotech.offerian.model.OfferInfo;
+import com.bynotech.offerian.model.UserLoginResponse_Info;
 
 import java.util.List;
 
@@ -19,12 +20,17 @@ import retrofit2.http.POST;
 public interface Api {
 
     String BASE_URL = "http://offerian.com/";
+    String BASE_URLsreda = "http://192.168.0.119/renewableenergy/api/";
+            //"login";
 
     @GET("api/apps/getalldistricts")
     Call<List<DristictsNameModel>> getMyJSON();
 
-//    @POST("/api/apps/alloffer")
-//    Call<List<OfferInfo>> getAllOffers();
+    @FormUrlEncoded
+    @POST("login")
+    Call<UserLoginResponse_Info> login(
+            @Field("email") String email,
+            @Field("password") String password);
 
     @FormUrlEncoded
     @POST("/api/apps/alloffer")
