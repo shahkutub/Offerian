@@ -11,7 +11,11 @@
         <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
     </style>
 
-
+        <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
+            <item name="android:progressDrawable">@drawable/food_rating_bar_full</item>
+            <item name="android:minHeight">@dimen/_120sdp</item>
+            <item name="android:maxHeight">@dimen/_120sdp</item>
+        </style>
     <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-light</item>
     </style>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_shodow_bg"
+    android:padding="@dimen/_10sdp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgReviewUser"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/img_britto"
+            android:layout_centerInParent="true"
+            ></de.hdodenhof.circleimageview.CircleImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/tvReviewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tajul"
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                    <RatingBar android:id="@+id/ratingBarReview"
+                        style="@style/foodRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_height="wrap_content">
+
+                    </RatingBar>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="on"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:id="@+id/tvCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="on"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textColor="#00BCD4"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tvComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textColor="#00BCD4"
+        />
+
+</LinearLayout>

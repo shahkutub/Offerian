@@ -136,13 +136,12 @@ public class TabFragmentMain extends Fragment {
                     return new BusinessFragment();
 
                 case 2 :
+
+                   return new ReviewFragment();
+                case 3 :
                     return new OfferFragment();
 
-                case 3 :
-                    return new RewordFragment();
 
-                case 4 :
-                    return new ReviewFragment();
           }
         return null;
         }

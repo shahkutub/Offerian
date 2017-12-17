@@ -3,6 +3,7 @@ package com.bynotech.offerian.retrofit;
 import com.bynotech.offerian.model.BusinessInfo;
 import com.bynotech.offerian.model.DristictsNameModel;
 import com.bynotech.offerian.model.OfferInfo;
+import com.bynotech.offerian.model.ReviewInfo;
 
 import java.util.List;
 
@@ -37,6 +38,16 @@ public interface Api {
     @FormUrlEncoded
     @POST("/api/apps/allbusiness")
     Call<List<BusinessInfo>> getAllBusiness(
+            @Field("session_id") String session_id,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude
+    );
+
+
+
+    @FormUrlEncoded
+    @POST("/api/apps/allreview")
+    Call<List<ReviewInfo>> getAllReview(
             @Field("session_id") String session_id,
             @Field("latitude") String latitude,
             @Field("longitude") String longitude
