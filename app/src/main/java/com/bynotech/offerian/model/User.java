@@ -5,4 +5,6 @@ package com.bynotech.offerian.model;
  */
 
 public class User {
+
+
 }

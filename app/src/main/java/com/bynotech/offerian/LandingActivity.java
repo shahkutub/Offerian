@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.bynotech.offerian.model.DristictsNameModel;
+import com.bynotech.offerian.model.UserLoginResponse_Info;
 import com.bynotech.offerian.retrofit.Api;
 import com.bynotech.offerian.utils.AlertMessage;
 import com.bynotech.offerian.utils.AppConstant;
@@ -114,6 +115,10 @@ public class LandingActivity extends AppCompatActivity {
             busyNow.dismis();
             }
         });
+
+
+
+
     }
 
 
