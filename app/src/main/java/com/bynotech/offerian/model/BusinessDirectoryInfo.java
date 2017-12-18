@@ -4,7 +4,7 @@ package com.bynotech.offerian.model;
  * Created by NanoSoft on 11/30/2017.
  */
 
-public class BusinessInfo {
+public class BusinessDirectoryInfo {
     private String page_name;
     private String logo_url;
     private String name;
@@ -12,10 +12,10 @@ public class BusinessInfo {
     private String company_varification;
     private String area_name;
 
-    public BusinessInfo() {
+    public BusinessDirectoryInfo() {
     }
 
-    public BusinessInfo(String page_name, String logo_url, String name, String business_category, String company_varification, String area_name) {
+    public BusinessDirectoryInfo(String page_name, String logo_url, String name, String business_category, String company_varification, String area_name) {
         this.page_name = page_name;
         this.logo_url = logo_url;
         this.name = name;

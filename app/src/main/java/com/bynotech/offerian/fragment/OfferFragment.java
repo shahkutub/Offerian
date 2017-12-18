@@ -24,6 +24,7 @@ public class OfferFragment extends Fragment {
     private boolean isViewShown = false;
     Context con;
     private boolean bgflag = false;
+   // public static OfferFragment instance;
 
 
 
@@ -38,6 +39,7 @@ public class OfferFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         con = getActivity();
+       // instance =this;
         initUI();
     }
 

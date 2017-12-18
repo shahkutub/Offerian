@@ -134,7 +134,7 @@ public class TabFragmentEdit extends Fragment {
                     return new EditProfileFragment();
 
                 case 1 :
-                    return new BusinessFragment();
+                    return new BusinessDirectoryFragment();
 
                 case 2 :
                     return new OfferFragment();

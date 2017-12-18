@@ -1,6 +1,8 @@
 package com.bynotech.offerian.adapter;
 
+import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bynotech.offerian.R;
+import com.bynotech.offerian.SignInActivity;
+import com.bynotech.offerian.fragment.OfferFragment;
 import com.bynotech.offerian.model.OfferInfo;
 import com.bynotech.offerian.utils.AppConstant;
 import com.squareup.picasso.Picasso;
@@ -104,6 +108,8 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MovieViewHol
             @Override
             public void onClick(View v) {
                 AppConstant.offerId = offerData.getOffer_id();
+                Intent intent = new Intent(context, SignInActivity.class);
+                context.startActivity(intent);
             }
         });
 //        holder.allOrderLayout.setOnClickListener(new View.OnClickListener() {

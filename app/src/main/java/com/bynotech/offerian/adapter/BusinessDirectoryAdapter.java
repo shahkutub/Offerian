@@ -2,7 +2,6 @@ package com.bynotech.offerian.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bynotech.offerian.R;
-import com.bynotech.offerian.model.BusinessInfo;
-import com.bynotech.offerian.model.OfferInfo;
+import com.bynotech.offerian.model.BusinessDirectoryInfo;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,9 +21,9 @@ import java.util.List;
  * Created by Sadi on 12/1/2017.
  */
 
-public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.MovieViewHolder> {
+public class BusinessDirectoryAdapter extends RecyclerView.Adapter<BusinessDirectoryAdapter.MovieViewHolder> {
     int lastPosition = -1;
-    private List<BusinessInfo> listBusinessInfo;
+    private List<BusinessDirectoryInfo> listBusinessDirectoryInfo;
     //private List<OrderData> ordersPdf;
     private int rowLayout;
     private Context context;
@@ -46,8 +44,8 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.MovieV
 
 
 
-    public BusinessAdapter(List<BusinessInfo> listBusinessInfo, int rowLayout, Context context) {
-        this.listBusinessInfo = listBusinessInfo;
+    public BusinessDirectoryAdapter(List<BusinessDirectoryInfo> listBusinessDirectoryInfo, int rowLayout, Context context) {
+        this.listBusinessDirectoryInfo = listBusinessDirectoryInfo;
         //this.ordersPdf = ordersPdf;
         this.rowLayout = rowLayout;
         this.context = context;
@@ -72,13 +70,13 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.MovieV
         holder.itemView.startAnimation(animation);
         lastPosition = position;
 
-        final BusinessInfo businessData = listBusinessInfo.get(position);
+        final BusinessDirectoryInfo businessData = listBusinessDirectoryInfo.get(position);
 
         holder.tvCompanyName.setText(businessData.getName());
         holder.tvBusinessCategory.setText(businessData.getBusiness_category());
 
 
-        if(listBusinessInfo.size()>0){
+        if(listBusinessDirectoryInfo.size()>0){
 
             if(businessData.getLogo_url()!=null){
                 Picasso.with(context).load(businessData.getLogo_url()).into(holder.imgCompanyLogo);
@@ -101,7 +99,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.MovieV
 
     @Override
     public int getItemCount() {
-        return listBusinessInfo.size();
+        return listBusinessDirectoryInfo.size();
     }
 
 

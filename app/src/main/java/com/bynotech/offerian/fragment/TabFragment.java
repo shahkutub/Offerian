@@ -132,7 +132,7 @@ public class TabFragment extends Fragment {
                   return new HomeFragment();
 
                 case 1 :
-                    return new BusinessFragment();
+                    return new BusinessDirectoryFragment();
 
                 case 2 :
                     return new OfferFragment();

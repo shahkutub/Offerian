@@ -16,13 +16,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.bynotech.offerian.R;
-import com.bynotech.offerian.adapter.BusinessAdapter;
-import com.bynotech.offerian.adapter.OfferAdapter;
-import com.bynotech.offerian.model.BusinessInfo;
-import com.bynotech.offerian.model.OfferInfo;
+import com.bynotech.offerian.adapter.BusinessDirectoryAdapter;
+import com.bynotech.offerian.model.BusinessDirectoryInfo;
 import com.bynotech.offerian.retrofit.Api;
 import com.bynotech.offerian.utils.AlertMessage;
-import com.bynotech.offerian.utils.BusyDialog;
 import com.bynotech.offerian.utils.NetInfo;
 
 import java.util.List;
@@ -36,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static android.widget.LinearLayout.VERTICAL;
 
 
-public class BusinessFragment extends Fragment {
+public class BusinessDirectoryFragment extends Fragment {
 
     private RecyclerView recyclerviewBusiness;
     private LinearLayoutManager mLayoutManager;
@@ -85,12 +82,12 @@ public class BusinessFragment extends Fragment {
 
         Api api = retrofit.create(Api.class);
 
-        Call<List<BusinessInfo>> call = api.getAllBusiness("20","12.343433","17.334334");
+        Call<List<BusinessDirectoryInfo>> call = api.getAllBusiness("20","12.343433","17.334334");
 
-        call.enqueue(new Callback<List<BusinessInfo>>() {
+        call.enqueue(new Callback<List<BusinessDirectoryInfo>>() {
             @Override
-            public void onResponse(Call<List<BusinessInfo>> call, Response<List<BusinessInfo>> response) {
-                List<BusinessInfo> offerInfoList = response.body();
+            public void onResponse(Call<List<BusinessDirectoryInfo>> call, Response<List<BusinessDirectoryInfo>> response) {
+                List<BusinessDirectoryInfo> offerInfoList = response.body();
 
 
                 LinearLayoutManager layoutManager
@@ -101,7 +98,7 @@ public class BusinessFragment extends Fragment {
                 dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider_line));
 
                 recyclerviewBusiness.addItemDecoration(dividerItemDecoration);
-                BusinessAdapter adapter = new BusinessAdapter(offerInfoList, R.layout.raw_business_directory, con);
+                BusinessDirectoryAdapter adapter = new BusinessDirectoryAdapter(offerInfoList, R.layout.raw_business_directory, con);
 
                 recyclerviewBusiness.setAdapter(adapter);;
                 for (int i = 0; i < offerInfoList.size(); i++) {
@@ -115,7 +112,7 @@ public class BusinessFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<BusinessInfo>> call, Throwable t) {
+            public void onFailure(Call<List<BusinessDirectoryInfo>> call, Throwable t) {
                 //busyNow.dismis();
             }
 
