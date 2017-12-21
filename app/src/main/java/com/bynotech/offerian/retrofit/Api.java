@@ -76,4 +76,28 @@ public interface Api {
             @Field("campaign_id") String campaign_id
     );
 
+    @FormUrlEncoded
+    @POST("/api/apps/updatepassword")
+    Call<CommonResponse> updatepassword(
+            @Field("session_id") String session_id,
+            @Field("password") String password
+    );
+
+    @FormUrlEncoded
+    @POST("/api/apps/resetpassword")
+    Call<CommonResponse> resetpassword(
+            @Field("user_name") String user_name,
+            @Field("ip_address") String ip_address,
+            @Field("os") String os,
+            @Field("os_version") String os_version,
+            @Field("band_name") String band_name,
+            @Field("divice_name") String divice_name,
+            @Field("model") String model,
+            @Field("imei") String imei,
+            @Field("fcm_token") String fcm_token,
+            @Field("operator") String operator,
+            @Field("screen_size") String screen_size
+
+    );
+
 }

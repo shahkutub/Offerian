@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     android:background="#00bcd4">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="@dimen/_15sdp"
-        android:textColor="#fff"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:text="@string/welcome_join_offerian_now"
-        />
 
 
     <LinearLayout
@@ -53,19 +44,19 @@
             android:textColorHint="@color/black"
             app:hintTextAppearance="@style/TextLabel"
             android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/etPassLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:textSize="@dimen/_15sdp"
-            android:textColor="#000"
-            android:inputType="textPassword"
-            android:background="@drawable/signup_button_bg"
-            android:hint="@string/password"
-            android:padding="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            />
+            <EditText
+                android:id="@+id/etPassLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="#000"
+                android:inputType="textPassword"
+                android:background="@drawable/signup_button_bg"
+                android:hint="@string/password"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                />
         </android.support.design.widget.TextInputLayout>
 
 
