@@ -1,6 +1,7 @@
 package com.bynotech.offerian.retrofit;
 
 import com.bynotech.offerian.model.BusinessDirectoryInfo;
+import com.bynotech.offerian.model.CommonResponse;
 import com.bynotech.offerian.model.DristictsNameModel;
 import com.bynotech.offerian.model.OfferDetails;
 import com.bynotech.offerian.model.OfferInfo;
@@ -56,9 +57,23 @@ public interface Api {
 
 
     @FormUrlEncoded
-    @POST("/api/apps/allreview")
-    Call<List<OfferDetails>> getOfferData(
+    @POST("/api/apps/offerdata")
+    Call<OfferDetails> getOfferData(
             @Field("offer_id") String offer_id
+    );
+
+    @FormUrlEncoded
+    @POST("/api/apps/offerorder")
+    Call<CommonResponse> placeOrder(
+            @Field("session_id") String session_id,
+            @Field("campaign_id") String campaign_id
+    );
+
+    @FormUrlEncoded
+    @POST("/api/apps/saveoffer")
+    Call<CommonResponse> saveOffer(
+            @Field("session_id") String session_id,
+            @Field("campaign_id") String campaign_id
     );
 
 }

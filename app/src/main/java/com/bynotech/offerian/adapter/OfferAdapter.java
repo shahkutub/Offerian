@@ -3,8 +3,12 @@ package com.bynotech.offerian.adapter;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +21,23 @@ import android.widget.TextView;
 import com.bynotech.offerian.R;
 import com.bynotech.offerian.SignInActivity;
 import com.bynotech.offerian.fragment.OfferFragment;
+import com.bynotech.offerian.model.OfferDetails;
 import com.bynotech.offerian.model.OfferInfo;
+import com.bynotech.offerian.retrofit.Api;
+import com.bynotech.offerian.utils.AlertMessage;
 import com.bynotech.offerian.utils.AppConstant;
+import com.bynotech.offerian.utils.NetInfo;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.widget.LinearLayout.VERTICAL;
 
 /**
  * Created by Sadi on 12/1/2017.
@@ -108,8 +124,9 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MovieViewHol
             @Override
             public void onClick(View v) {
                 AppConstant.offerId = offerData.getOffer_id();
-                Intent intent = new Intent(context, SignInActivity.class);
-                context.startActivity(intent);
+                getOfferById(offerData.getOffer_id());
+//                Intent intent = new Intent(context, SignInActivity.class);
+//                context.startActivity(intent);
             }
         });
 //        holder.allOrderLayout.setOnClickListener(new View.OnClickListener() {
@@ -133,4 +150,61 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MovieViewHol
 
         holder.itemView.clearAnimation();
     }
+
+
+    private void getOfferById(String offerId) {
+
+        if(!NetInfo.isOnline(context)){
+            AlertMessage.showMessage(context,"Alert","No internet connection!");
+        }
+
+//        final BusyDialog busyNow = new BusyDialog(con, true,false);
+//        busyNow.show();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+                .build();
+
+        Api api = retrofit.create(Api.class);
+
+        Call<OfferDetails> call = api.getOfferData(offerId);
+
+        call.enqueue(new Callback<OfferDetails>() {
+            @Override
+            public void onResponse(Call<OfferDetails> call, Response<OfferDetails> response) {
+                OfferDetails offerDetails = response.body();
+
+
+                LinearLayoutManager layoutManager
+                        = new LinearLayoutManager(context, VERTICAL, false);
+//                recyclerviewOffer.setLayoutManager(layoutManager);
+//                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(con,
+//                        layoutManager.getOrientation());
+//                dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider_line));
+//
+//                recyclerviewOffer.addItemDecoration(dividerItemDecoration);
+//                adapter = new OfferAdapter(offerInfoList,R.layout.raw_offer,con);
+//
+//                recyclerviewOffer.setAdapter(adapter);;
+//                for (int i = 0; i < offerInfoList.size(); i++) {
+//                    //heroes[i] = heroList.get(i).getName_en();
+//                    Log.e("Company name",""+offerInfoList.get(i).getCompany_name());
+//                }
+
+
+                // busyNow.dismis();
+                //displaying the string array into listview
+
+            }
+
+            @Override
+            public void onFailure(Call<OfferDetails> call, Throwable t) {
+                //busyNow.dismis();
+            }
+
+        });
+    }
+
+
 }
