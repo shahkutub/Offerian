@@ -2,6 +2,7 @@ package com.bynotech.offerian;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -58,7 +60,7 @@ public class SignInActivity extends AppCompatActivity {
     private EditText etMobileLogIn,etPassLogin;
     private Button BtnLogin;
     private String ip_addressIPv4, os_version, band_name, model,screen_size,imei,fullname,mobile,password,area,disid,gender;
-
+    private TextView tvForgotPass;
     private static final int PERMISSION_REQUEST_CODE = 200;
     String[] permissionsRequired = new String[]{Manifest.permission.CAMERA,
             ACCESS_FINE_LOCATION,
@@ -102,6 +104,14 @@ public class SignInActivity extends AppCompatActivity {
         etPassLogin = (EditText)findViewById(R.id.etPassLogin);
 
         BtnLogin = (Button) findViewById(R.id.BtnLogin);
+        tvForgotPass = (TextView) findViewById(R.id.tvForgotPass);
+
+        tvForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogueForgotpass();
+            }
+        });
 
         BtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +130,20 @@ public class SignInActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void dialogueForgotpass() {
+
+        Dialog dialog = new Dialog(con);
+        dialog.setContentView(R.layout.forgot_pass);
+        EditText etforGotPass = (EditText)dialog.findViewById(R.id.etforGotPass);
+        Button btnSearchAc = (Button)dialog.findViewById(R.id.btnSearchAc);
+
+        dialog.show();
+
+
+
+
     }
 
 
