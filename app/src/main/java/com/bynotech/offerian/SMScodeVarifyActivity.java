@@ -43,7 +43,7 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
 
     Context con;
     EditText etSmsCode;
-    private LinearLayout lineCode;
+   // private LinearLayout lineCode;
    // private SmsVerifyCatcher smsVerifyCatcher;
 
     @Override
@@ -54,13 +54,13 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
         //init views
          etSmsCode = (EditText) findViewById(R.id.etSmsCode);
          Button BtnSubmitCode = (Button) findViewById(R.id.BtnSubmitCode);
-        lineCode = (LinearLayout)findViewById(R.id.lineCode);
+        //lineCode = (LinearLayout)findViewById(R.id.lineCode);
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         EditText et1=new EditText(this);
         //et1.setBackgroundColor(Color.parseColor("#000"));
         et1.setLayoutParams(lparams);
-        lineCode.addView(et1);
+        //lineCode.addView(et1);
         //init SmsVerifyCatcher
 //        smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
 //            @Override

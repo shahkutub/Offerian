@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bynotech.offerian.R;
+import com.bynotech.offerian.utils.AppConstant;
 
 
 public class TabFragmentMain extends Fragment {
@@ -23,8 +24,8 @@ public class TabFragmentMain extends Fragment {
     public static ViewPager viewPager;
     public static int int_items = 4;
     private int fragmentPos=0;
-    private String tabTitles[] = new String[] { "Home", "Business","Offer", "Reword", "Review"};
-    private int tabIcon[] = new int[] { R.drawable.ic_home_white_48dp, R.drawable.ic_assignment_white_48dp,R.drawable.ic_star_border_white_48dp, R.drawable.ic_shopping_cart_white_48dp};
+    private String tabTitles[] = new String[] { "Offer", "Reword", "Business","Review"};
+    private int tabIcon[] = new int[] { R.drawable.ic_home_white_48dp,R.drawable.ic_card_giftcard_white_48dp, R.drawable.ic_assignment_white_48dp,R.drawable.ic_star_border_white_48dp};
     private MyAdapter adapter;
 
 
@@ -61,6 +62,7 @@ public class TabFragmentMain extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
+                AppConstant.pageTitle = tabTitles[position];
 
                 Log.e("position",""+position);
 
@@ -130,16 +132,20 @@ public class TabFragmentMain extends Fragment {
 
               case 0 :
 
+                  //AppConstant.pageTitle = "All Offer";
                   return new HomeFragment();
 
+
                 case 1 :
-                    return new BusinessDirectoryFragment();
+                    //AppConstant.pageTitle = "Reward";
+                    return new HomeFragment();
 
                 case 2 :
-
-                   return new ReviewFragment();
+                   // AppConstant.pageTitle = "Business";
+                   return new BusinessDirectoryFragment();
                 case 3 :
-                    return new OfferFragment();
+                    //AppConstant.pageTitle = "Review";
+                    return new ReviewFragment();
 
 
           }
@@ -155,6 +161,7 @@ public class TabFragmentMain extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
+            //AppConstant.pageTitle = tabTitles[position];
                 return tabTitles[position];
         }
 

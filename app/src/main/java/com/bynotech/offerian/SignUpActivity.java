@@ -345,6 +345,7 @@ public class SignUpActivity extends AppCompatActivity {
                 parameters.put("divice_name",  band_name);
                 parameters.put("model",  model);
                 parameters.put("imei", imei);
+                Log.e("fcm_token",PersistData.getStringData(con,AppConstant.fcmToken));
                 parameters.put("fcm_token", PersistData.getStringData(con,AppConstant.fcmToken));
                 parameters.put("operator", "gp");
                 parameters.put("screen_size", screen_size);

@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity{
     private LinearLayout linProfile;
     private String[] searchItems = {"AZAD pharma","SADI pharma","Kamal pharma", "Azhar pharma", "Bahar pharma", "sumon pharma"};
 
-    private TextView tvProfile,tvMyOrder,tvMyFavorite,tvMyBusiness,tvSettings,tvLogOut,tvProName
+    private TextView tvTitle,tvProfile,tvMyOrder,tvMyFavorite,tvMyBusiness,tvSettings,tvLogOut,tvProName
             ,tvWallet;
 
     String profile_picture,full_name,reward_point,user_name;
@@ -258,6 +258,8 @@ public class MainActivity extends AppCompatActivity{
 
 
         linProfile = (LinearLayout)findViewById(R.id.linProfile);
+        tvTitle = (TextView)findViewById(R.id.tvTitle);
+        tvTitle.setText(AppConstant.pageTitle+"");
         tvProfile = (TextView)findViewById(R.id.tvProfile);
         tvMyOrder = (TextView)findViewById(R.id.tvMyOrder);
         tvMyBusiness = (TextView)findViewById(R.id.tvMyBusiness);
@@ -287,6 +289,11 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
+    @Override
+    protected void onResume() {
+        tvTitle.setText(AppConstant.pageTitle+"");
+        super.onResume();
+    }
 
     private void autoComInit(final AutoCompleteTextView autoCompleteTextView) {
 
