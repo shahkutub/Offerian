@@ -4,18 +4,35 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00bcd4">
+    android:background="#fff">
 
-    <TextView
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="@dimen/_15sdp"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/_35sdp"
-        android:text="@string/welcome_join_offerian_now"
-        />
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/_5sdp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@mipmap/ic_back"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:layout_toRightOf="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SMS Verification"
+            android:textColor="#fff"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
 
 
     <LinearLayout
@@ -31,7 +48,7 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilFullNameLogIn"
             android:layout_width="match_parent"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/appcolor"
             app:hintTextAppearance="@style/TextLabel"
             android:visibility="visible"
             android:layout_height="wrap_content">
@@ -43,11 +60,12 @@
                 android:gravity="left"
                 android:textSize="@dimen/_15sdp"
                 android:textColor="#000"
-                android:background="@drawable/signup_button_bg"
                 android:hint="SMS Code"
                 android:inputType="number"
                 android:padding="@dimen/_10sdp"
                 />
+
+
         </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/BtnSubmitCode"
@@ -57,7 +75,7 @@
             android:textSize="@dimen/_15sdp"
             android:textColor="#000"
             android:padding="@dimen/_10sdp"
-            android:background="@drawable/signup_button_bg"
+            android:background="@color/appcolor"
             android:text="Submit"
             android:layout_marginTop="@dimen/_25sdp"
 
@@ -72,6 +90,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:padding="@dimen/_10sdp"
             android:textSize="@dimen/_15sdp"
+            android:textColor="@color/appcolor"
             />
     </LinearLayout>
 

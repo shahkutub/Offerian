@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ import static android.Manifest.permission_group.CAMERA;
 public class SignInActivity extends AppCompatActivity {
     Context con;
     private EditText etMobileLogIn,etPassLogin;
+    private ImageView imgBack;
     private Button BtnLogin;
     private String ip_addressIPv4, os_version, band_name, model,screen_size,imei,fullname,mobile,password,area,disid,gender;
     private TextView tvForgotPass;
@@ -76,7 +78,13 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void initialization() {
-
+        imgBack = (ImageView)findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         @SuppressLint("WifiManagerLeak") WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
         //String ip_address = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
         band_name = Build.MANUFACTURER;

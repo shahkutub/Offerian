@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import com.bynotech.offerian.utils.AppConstant;
 import com.bynotech.offerian.utils.BusyDialog;
 import com.bynotech.offerian.utils.NetInfo;
 import com.bynotech.offerian.utils.PersistData;
+import com.bynotech.offerian.utils.PersistentUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +45,9 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
 
     Context con;
     EditText etSmsCode;
-   // private LinearLayout lineCode;
+    private ImageView imgBack;
+
+    // private LinearLayout lineCode;
    // private SmsVerifyCatcher smsVerifyCatcher;
 
     @Override
@@ -76,6 +80,14 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
         //smsVerifyCatcher.setFilter("regexp");
 
         //button for sending verification code manual
+
+        imgBack = (ImageView)findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         BtnSubmitCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,6 +184,8 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
 
                         if (status==200){
                             //Toast.makeText(con, "Wait please! verification code msg will send to you.", Toast.LENGTH_SHORT).show();
+                            PersistentUser.setLogin(con);
+                            Toast.makeText(con, "Login Success.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(con, MainActivity.class));
                             finish();
                         }

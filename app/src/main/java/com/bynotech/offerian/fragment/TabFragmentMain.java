@@ -70,7 +70,9 @@ public class TabFragmentMain extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+                AppConstant.pageTitle = tabTitles[state];
 
+                Log.e("position",""+state);
 
             }
         });

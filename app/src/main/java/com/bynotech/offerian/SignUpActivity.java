@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -66,6 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 200;
     private View view;
     private EditText etFullName, etMobile, etPassword;
+    private ImageView imgBack;
     private Button btnSubmit;
     private Spinner spinnerArea, spinnerGender;
     private String ip_addressIPv4, os_version, band_name, model,screen_size,imei,fullname,mobile,password,area,disid,gender;
@@ -90,6 +92,15 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private void initialization() {
+
+        imgBack = (ImageView)findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         @SuppressLint("WifiManagerLeak") WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
         //String ip_address = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
         band_name = Build.MANUFACTURER;

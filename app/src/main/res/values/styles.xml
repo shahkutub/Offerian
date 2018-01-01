@@ -9,6 +9,15 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="colorControlNormal">#c5c5c5</item>
+        <item name="colorControlActivated">@color/appcolor</item>
+        <item name="colorControlHighlight">@color/appcolor</item>
+    </style>
+
+
+    <style name="SpinnerTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@color/white</item>
+        <item name="android:dropDownSelector">@color/appcolor</item>
     </style>
 
         <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">

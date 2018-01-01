@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity{
 
         linProfile = (LinearLayout)findViewById(R.id.linProfile);
         tvTitle = (TextView)findViewById(R.id.tvTitle);
-        tvTitle.setText(AppConstant.pageTitle+"");
+        tvTitle.setText(AppConstant.pageTitle);
         tvProfile = (TextView)findViewById(R.id.tvProfile);
         tvMyOrder = (TextView)findViewById(R.id.tvMyOrder);
         tvMyBusiness = (TextView)findViewById(R.id.tvMyBusiness);
@@ -291,8 +291,15 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onResume() {
-        tvTitle.setText(AppConstant.pageTitle+"");
+        tvTitle.setText(AppConstant.pageTitle);
         super.onResume();
+    }
+
+
+    @Override
+    protected void onPause() {
+        tvTitle.setText(AppConstant.pageTitle);
+        super.onPause();
     }
 
     private void autoComInit(final AutoCompleteTextView autoCompleteTextView) {

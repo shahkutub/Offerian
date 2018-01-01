@@ -15,6 +15,7 @@ import com.bynotech.offerian.utils.AlertMessage;
 import com.bynotech.offerian.utils.AppConstant;
 import com.bynotech.offerian.utils.BusyDialog;
 import com.bynotech.offerian.utils.NetInfo;
+import com.bynotech.offerian.utils.PersistentUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,11 +39,19 @@ public class LandingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.landing_page);
+
+
 
         con  = this;
-        landingActivity = this;
-        initialization();
+        if(PersistentUser.isLogged(con)){
+            startActivity(new Intent(con,MainActivity.class));
+        }else {
+            setContentView(R.layout.landing_page);
+            landingActivity = this;
+            initialization();
+        }
+
+
     }
 
     private void initialization() {

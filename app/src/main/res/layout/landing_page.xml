@@ -5,6 +5,22 @@
     android:background="#3FA9F5"
     >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_80sdp"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/playstore_icon"
+            />
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,8 +36,8 @@
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#636365"
-            android:text="SIGNUP"
+            android:background="#CD1D1D"
+            android:text="Sign Up"
             android:gravity="center"
             android:padding="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_20sdp"
@@ -32,8 +48,8 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FE6B35"
-            android:text="LOGIN"
+            android:background="#DC630A"
+            android:text="Log In"
             android:gravity="center"
             android:padding="@dimen/_10sdp"
             />
