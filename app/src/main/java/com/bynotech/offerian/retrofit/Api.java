@@ -6,6 +6,7 @@ import com.bynotech.offerian.model.DristictsNameModel;
 import com.bynotech.offerian.model.OfferDetails;
 import com.bynotech.offerian.model.OfferInfo;
 import com.bynotech.offerian.model.ReviewInfo;
+import com.bynotech.offerian.model.RewardInfo;
 
 import java.util.List;
 
@@ -55,6 +56,14 @@ public interface Api {
             @Field("longitude") String longitude
     );
 
+
+    @FormUrlEncoded
+    @POST("/api/apps/allreward")
+    Call<List<RewardInfo>> getAllReword(
+            @Field("session_id") String session_id,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude
+    );
 
     @FormUrlEncoded
     @POST("/api/apps/offerdata")

@@ -1,14 +1,9 @@
 package com.bynotech.offerian.adapter;
 
-import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bynotech.offerian.R;
-import com.bynotech.offerian.SignInActivity;
-import com.bynotech.offerian.fragment.OfferFragment;
 import com.bynotech.offerian.model.OfferDetails;
 import com.bynotech.offerian.model.OfferInfo;
 import com.bynotech.offerian.retrofit.Api;

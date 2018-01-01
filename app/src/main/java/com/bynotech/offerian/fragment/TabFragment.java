@@ -135,7 +135,7 @@ public class TabFragment extends Fragment {
                     return new BusinessDirectoryFragment();
 
                 case 2 :
-                    return new OfferFragment();
+                    return new RewardFragment();
 
                 case 3 :
                     return new RewordFragment();

@@ -24,8 +24,8 @@ public class TabFragmentMain extends Fragment {
     public static ViewPager viewPager;
     public static int int_items = 4;
     private int fragmentPos=0;
-    private String tabTitles[] = new String[] { "Offer", "Reword", "Business","Review"};
-    private int tabIcon[] = new int[] { R.drawable.ic_home_white_48dp,R.drawable.ic_card_giftcard_white_48dp, R.drawable.ic_assignment_white_48dp,R.drawable.ic_star_border_white_48dp};
+    private String tabTitles[] = new String[] { "Offer", "Business", "Review","Reword"};
+    private int tabIcon[] = new int[] { R.drawable.ic_home_white_48dp, R.drawable.ic_assignment_white_48dp,R.drawable.ic_star_border_white_48dp,R.drawable.ic_card_giftcard_white_48dp};
     private MyAdapter adapter;
 
 
@@ -140,11 +140,12 @@ public class TabFragmentMain extends Fragment {
 
                 case 1 :
                     //AppConstant.pageTitle = "Reward";
-                    return new HomeFragment();
+                    return new BusinessDirectoryFragment();
 
                 case 2 :
                    // AppConstant.pageTitle = "Business";
-                   return new BusinessDirectoryFragment();
+
+                   return new ReviewFragment();
                 case 3 :
                     //AppConstant.pageTitle = "Review";
                     return new ReviewFragment();
