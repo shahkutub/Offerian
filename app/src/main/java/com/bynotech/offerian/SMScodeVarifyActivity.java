@@ -190,6 +190,7 @@ public class SMScodeVarifyActivity extends AppCompatActivity{
                             finish();
                         }
                         if(status==201){
+                            PersistentUser.setLogin(con);
                             Toast.makeText(con, "Wrong otp", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(con,MainActivity.class));
                             finish();

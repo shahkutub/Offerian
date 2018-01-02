@@ -65,7 +65,7 @@ public class RewardFragment extends Fragment {
 
     public void initUI() {
         recyclerviewReward = getView().findViewById(R.id.recyclerviewReward);
-
+        getAllOffers();
     }
 
 

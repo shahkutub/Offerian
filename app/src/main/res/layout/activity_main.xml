@@ -39,7 +39,7 @@
                 android:inputType="text"
                 android:maxLines="1"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/tvOfferian"
+                android:layout_toRightOf="@+id/tvTitle"
                 android:paddingBottom="@dimen/_5sdp"
                 android:paddingLeft="@dimen/_5sdp"
                 android:paddingRight="@dimen/_10sdp"

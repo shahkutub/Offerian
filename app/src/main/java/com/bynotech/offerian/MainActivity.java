@@ -187,8 +187,9 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    private void initialization() {
 
+    private void initialization() {
+        tvTitle = (TextView)findViewById(R.id.tvTitle);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerLayout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
         mNavigationView = (NavigationView) findViewById(R.id.shitstuff);
@@ -207,7 +208,7 @@ public class MainActivity extends AppCompatActivity{
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
 
-        TabFragmentMain fragment = new TabFragmentMain();
+        TabFragmentMain fragment = new TabFragmentMain(tvTitle);
 
         Bundle bundle = new Bundle();
         bundle.putInt("pos", 0);
@@ -220,7 +221,7 @@ public class MainActivity extends AppCompatActivity{
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
-                xfragmentTransaction.replace(R.id.containerView, new TabFragmentMain()).commit();
+                xfragmentTransaction.replace(R.id.containerView, new TabFragmentMain(tvTitle)).commit();
 
                 return true;
             }
@@ -258,8 +259,6 @@ public class MainActivity extends AppCompatActivity{
 
 
         linProfile = (LinearLayout)findViewById(R.id.linProfile);
-        tvTitle = (TextView)findViewById(R.id.tvTitle);
-        tvTitle.setText(AppConstant.pageTitle);
         tvProfile = (TextView)findViewById(R.id.tvProfile);
         tvMyOrder = (TextView)findViewById(R.id.tvMyOrder);
         tvMyBusiness = (TextView)findViewById(R.id.tvMyBusiness);
@@ -291,14 +290,12 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onResume() {
-        tvTitle.setText(AppConstant.pageTitle);
         super.onResume();
     }
 
 
     @Override
     protected void onPause() {
-        tvTitle.setText(AppConstant.pageTitle);
         super.onPause();
     }
 

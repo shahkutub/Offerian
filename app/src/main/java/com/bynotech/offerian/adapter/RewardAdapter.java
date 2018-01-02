@@ -2,6 +2,7 @@ package com.bynotech.offerian.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bynotech.offerian.R;
+import com.bynotech.offerian.model.OfferInfo;
 import com.bynotech.offerian.model.ReviewInfo;
 import com.bynotech.offerian.model.RewardInfo;
+import com.bynotech.offerian.utils.AppConstant;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -31,18 +34,19 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MovieViewH
     private Context context;
     TextView tvGrandTotal;
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout allOrderLayout;
-        TextView tvReviewName,tvCompany,tvComment;
-        RatingBar ratingBarReview;
-        ImageView imgReviewUser;
+        TextView tvItemType,tvOfferLft,tvDescription,tvPoint,tvMore,tvCamp_ribon;
+        ImageView img_product_photo,imgLogo,imgLocaOrDalyver;
         public MovieViewHolder(View v) {
             super(v);
-//            imgReviewUser = (ImageView) v.findViewById(R.id.imgReviewUser);
-//            tvReviewName = (TextView) v.findViewById(R.id.tvReviewName);
-//            tvCompany = (TextView) v.findViewById(R.id.tvCompany);
-//            tvComment = (TextView) v.findViewById(R.id.tvComment);
-//            ratingBarReview = (RatingBar) v.findViewById(R.id.ratingBarReview);
-
+            img_product_photo = (ImageView) v.findViewById(R.id.img_product_photo);
+            imgLogo = (ImageView) v.findViewById(R.id.imgLogo);
+            imgLocaOrDalyver = (ImageView) v.findViewById(R.id.imgLocaOrDalyver);
+            tvItemType = (TextView) v.findViewById(R.id.tvItemType);
+            tvOfferLft = (TextView) v.findViewById(R.id.tvOfferLft);
+            tvDescription = (TextView) v.findViewById(R.id.tvDescription);
+            tvPoint = (TextView) v.findViewById(R.id.tvPoint);
+            tvMore = (TextView) v.findViewById(R.id.tvMore);
+            tvCamp_ribon = (TextView) v.findViewById(R.id.tvCamp_ribon);
         }
     }
 
@@ -74,21 +78,43 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MovieViewH
         holder.itemView.startAnimation(animation);
         lastPosition = position;
 
-        final RewardInfo offerData = listReviewInfo.get(position);
+        final RewardInfo data = listReviewInfo.get(position);
 
+        holder.tvItemType.setText(data.getItem_type());
+        holder.tvOfferLft.setText(data.getOffer_left()+" left only");
+        holder.tvDescription.setText(data.getDescription());
+        holder.tvPoint.setText(data.getReward_point()+" points");
 
-
-
-//        if(listReviewInfo.size()>0){
-//            holder.tvReviewName.setText(offerData.getUser_name());
-//            holder.tvCompany.setText(offerData.getCompany_name());
-//            holder.tvComment.setText(offerData.getComment());
-//            if(offerData.getUser_image()!=null){
-//                Picasso.with(context).load(offerData.getUser_image()).into(holder.imgReviewUser);
-//            }
-//
+//        if(!TextUtils.isEmpty(data.getCampaign_ribon())){
+//            holder.tvCamp_ribon.setVisibility(View.VISIBLE);
+//            holder.tvCamp_ribon.setText(offerData.getCampaign_ribon());
+//        }else {
+//            holder.tvCamp_ribon.setVisibility(View.GONE);
 //        }
+        if(data.getDelivery_type().equalsIgnoreCase("1")){
+           // holder.imgLocaOrDalyver.setImageResource(R.drawable.ic_directions_bike_white_48dp);
+        }
 
+        if(listReviewInfo.size()>0){
+
+            if(data.getProduct_photo()!=null){
+                Picasso.with(context).load(data.getProduct_photo()).into(holder.img_product_photo);
+            }
+
+            if(data.getCompany_logo()!=null){
+                Picasso.with(context).load(data.getCompany_logo()).into(holder.imgLogo);
+            }
+        }
+
+        holder.img_product_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppConstant.offerId = data.getOffer_id();
+                //getOfferById(offerData.getOffer_id());
+//                Intent intent = new Intent(context, SignInActivity.class);
+//                context.startActivity(intent);
+            }
+        });
 
     }
 

@@ -1,5 +1,6 @@
 package com.bynotech.offerian.fragment;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -18,6 +19,7 @@ import com.bynotech.offerian.R;
 import com.bynotech.offerian.utils.AppConstant;
 
 
+@SuppressLint("ValidFragment")
 public class TabFragmentMain extends Fragment {
 
     public static TabLayout tabLayout;
@@ -27,6 +29,12 @@ public class TabFragmentMain extends Fragment {
     private String tabTitles[] = new String[] { "Offer", "Business", "Review","Reword"};
     private int tabIcon[] = new int[] { R.drawable.ic_home_white_48dp, R.drawable.ic_assignment_white_48dp,R.drawable.ic_star_border_white_48dp,R.drawable.ic_card_giftcard_white_48dp};
     private MyAdapter adapter;
+
+    TextView tvTitle;
+    @SuppressLint("ValidFragment")
+    public TabFragmentMain(TextView tvTitle) {
+        this.tvTitle= tvTitle;
+    }
 
 
     @Override
@@ -62,17 +70,15 @@ public class TabFragmentMain extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                AppConstant.pageTitle = tabTitles[position];
-
-                Log.e("position",""+position);
+                tvTitle.setText(tabTitles[position]);
+                Log.e("position",""+tabTitles[position]);
 
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                AppConstant.pageTitle = tabTitles[state];
-
-                Log.e("position",""+state);
+//                tvTitle.setText(tabTitles[state]);
+//                Log.e("position",""+tabTitles[state]);
 
             }
         });
@@ -95,8 +101,7 @@ public class TabFragmentMain extends Fragment {
         });
 
         setPageItem(fragmentPos);
-
-//        // Iterate over all tabs and set the custom view
+        tvTitle.setText(tabTitles[fragmentPos]);
 
         return x;
 
@@ -133,22 +138,20 @@ public class TabFragmentMain extends Fragment {
             switch (position){
 
               case 0 :
+                  //tvTitle.setText(tabTitles[0]);
 
-                  //AppConstant.pageTitle = "All Offer";
                   return new HomeFragment();
-
-
                 case 1 :
-                    //AppConstant.pageTitle = "Reward";
+                   // tvTitle.setText(tabTitles[1]);
+
                     return new BusinessDirectoryFragment();
 
                 case 2 :
-                   // AppConstant.pageTitle = "Business";
-
-                   return new ReviewFragment();
-                case 3 :
-                    //AppConstant.pageTitle = "Review";
+                    //tvTitle.setText(tabTitles[2]);
                     return new ReviewFragment();
+                case 3 :
+                    //tvTitle.setText(tabTitles[3]);
+                    return new RewardFragment();
 
 
           }

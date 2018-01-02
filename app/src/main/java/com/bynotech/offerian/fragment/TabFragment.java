@@ -138,7 +138,7 @@ public class TabFragment extends Fragment {
                     return new RewardFragment();
 
                 case 3 :
-                    return new RewordFragment();
+                    return new RewardFragment();
 
                 case 4 :
                     return new ReviewFragment();
