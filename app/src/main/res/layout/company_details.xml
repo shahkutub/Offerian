@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/img_product_photo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_130sdp"
+                android:src="@drawable/img_hotel"
+                android:scaleType="fitXY"
+                ></ImageView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_105sdp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imgLogo"
+                    android:layout_width="@dimen/_55sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:src="@drawable/img_britto"
+                    ></ImageView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/imgLogo"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/_55sdp"
+                    android:orientation="horizontal"
+                    >
+                <TextView
+                    android:id="@+id/tvCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Britto Lab"
+                    android:textColor="@color/black"
+                    android:layout_centerVertical="true"
+                    />
+
+                <ImageView
+                    android:id="@+id/imgComVerified"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_1sdp"
+                    android:src="@drawable/ic_verified_user_black_48dp"
+                    />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_55sdp"
+                    android:orientation="horizontal"
+                    >
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_1sdp"
+                        android:src="@drawable/ic_verified_user_black_48dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 4.3 (4 Reviews)"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_1sdp"
+                        android:src="@drawable/ic_verified_user_black_48dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="15 Followers"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_centerVertical="true"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/containerViewCompany"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"></FrameLayout>
+</LinearLayout>

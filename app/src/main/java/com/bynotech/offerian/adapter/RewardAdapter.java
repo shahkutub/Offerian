@@ -84,6 +84,7 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MovieViewH
         holder.tvOfferLft.setText(data.getOffer_left()+" left only");
         holder.tvDescription.setText(data.getDescription());
         holder.tvPoint.setText(data.getReward_point()+" points");
+        holder.tvDescription.setText(data.getDescription());
 
 //        if(!TextUtils.isEmpty(data.getCampaign_ribon())){
 //            holder.tvCamp_ribon.setVisibility(View.VISIBLE);
@@ -92,7 +93,9 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MovieViewH
 //            holder.tvCamp_ribon.setVisibility(View.GONE);
 //        }
         if(data.getDelivery_type().equalsIgnoreCase("1")){
-           // holder.imgLocaOrDalyver.setImageResource(R.drawable.ic_directions_bike_white_48dp);
+           holder.imgLocaOrDalyver.setImageResource(R.drawable.ic_autorenew_white_24dp);
+        }else if(data.getDelivery_type().equalsIgnoreCase("2")){
+            holder.imgLocaOrDalyver.setImageResource(R.drawable.ic_directions_bike_white_48dp);
         }
 
         if(listReviewInfo.size()>0){
