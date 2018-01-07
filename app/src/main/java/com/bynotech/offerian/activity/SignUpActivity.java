@@ -1,4 +1,4 @@
-package com.bynotech.offerian;
+package com.bynotech.offerian.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -35,6 +35,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bynotech.offerian.R;
 import com.bynotech.offerian.utils.AlertMessage;
 import com.bynotech.offerian.utils.AppConstant;
 import com.bynotech.offerian.utils.BusyDialog;

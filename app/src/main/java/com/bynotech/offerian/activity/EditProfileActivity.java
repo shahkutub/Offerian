@@ -1,4 +1,4 @@
-package com.bynotech.offerian;
+package com.bynotech.offerian.activity;
 
 /**
  * Created by NanoSoft on 11/23/2017.
@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bynotech.offerian.fragment.TabFragmentCompany;
+import com.bynotech.offerian.R;
 import com.bynotech.offerian.fragment.TabFragmentEdit;
 import com.bynotech.offerian.utils.AppConstant;
 import com.bynotech.offerian.utils.PersistData;
@@ -21,7 +21,7 @@ import com.bynotech.offerian.utils.PersistData;
  * Created by Sadi on 11/22/2017.
  */
 
-public class BusinessProfileActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
 
     Context con;
     FragmentManager mFragmentManager;
@@ -30,7 +30,7 @@ public class BusinessProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.company_details);
+        setContentView(R.layout.edit_profile);
 
         con  = this;
         initialization();
@@ -41,23 +41,23 @@ public class BusinessProfileActivity extends AppCompatActivity {
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
 
-        TabFragmentCompany fragment = new TabFragmentCompany();
+        TabFragmentEdit fragment = new TabFragmentEdit();
 
         Bundle bundle = new Bundle();
         bundle.putInt("pos", 0);
         PersistData.setIntData(con, AppConstant.FRAGMENTPOSITON, 0);
         fragment.setArguments(bundle);
 
-        mFragmentTransaction.replace(R.id.containerViewCompany, fragment).commit();
+        mFragmentTransaction.replace(R.id.containerViewProfile, fragment).commit();
 
-//        imgBack = (ImageView)findViewById(R.id.imgBack);
-//
-//        imgBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
+        imgBack = (ImageView)findViewById(R.id.imgBack);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 }

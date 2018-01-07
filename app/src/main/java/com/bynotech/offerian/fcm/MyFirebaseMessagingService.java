@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.bynotech.offerian.MainActivity;
+import com.bynotech.offerian.activity.MainActivity;
 import com.bynotech.offerian.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;

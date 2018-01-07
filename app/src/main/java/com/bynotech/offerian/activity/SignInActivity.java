@@ -1,4 +1,4 @@
-package com.bynotech.offerian;
+package com.bynotech.offerian.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -16,7 +16,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.text.format.Formatter;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -34,6 +33,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bynotech.offerian.R;
 import com.bynotech.offerian.utils.AlertMessage;
 import com.bynotech.offerian.utils.AppConstant;
 import com.bynotech.offerian.utils.BusyDialog;

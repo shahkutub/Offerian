@@ -1,4 +1,4 @@
-package com.bynotech.offerian;
+package com.bynotech.offerian.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.bynotech.offerian.R;
 
 
 /**
