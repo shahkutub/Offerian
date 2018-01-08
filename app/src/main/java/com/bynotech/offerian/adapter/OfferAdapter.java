@@ -1,6 +1,7 @@
 package com.bynotech.offerian.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bynotech.offerian.R;
+import com.bynotech.offerian.activity.BusinessProfileActivity;
 import com.bynotech.offerian.model.OfferDetails;
 import com.bynotech.offerian.model.OfferInfo;
 import com.bynotech.offerian.retrofit.Api;
@@ -118,8 +120,8 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MovieViewHol
             public void onClick(View v) {
                 AppConstant.offerId = offerData.getOffer_id();
                 getOfferById(offerData.getOffer_id());
-//                Intent intent = new Intent(context, SignInActivity.class);
-//                context.startActivity(intent);
+                Intent intent = new Intent(context, BusinessProfileActivity.class);
+                context.startActivity(intent);
             }
         });
 //        holder.allOrderLayout.setOnClickListener(new View.OnClickListener() {
