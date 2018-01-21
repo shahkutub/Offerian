@@ -76,7 +76,6 @@ public class TabFragmentCompany extends Fragment {
 
 
 
-
         tabLayout.post(new Runnable() {
             @Override
             public void run() {

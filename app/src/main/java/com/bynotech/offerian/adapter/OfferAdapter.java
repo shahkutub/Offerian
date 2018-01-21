@@ -119,7 +119,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MovieViewHol
             @Override
             public void onClick(View v) {
                 AppConstant.offerId = offerData.getOffer_id();
-                getOfferById(offerData.getOffer_id());
+                //getOfferById(offerData.getOffer_id());
                 Intent intent = new Intent(context, BusinessProfileActivity.class);
                 context.startActivity(intent);
             }
@@ -147,59 +147,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MovieViewHol
     }
 
 
-    private void getOfferById(String offerId) {
 
-        if(!NetInfo.isOnline(context)){
-            AlertMessage.showMessage(context,"Alert","No internet connection!");
-        }
-
-//        final BusyDialog busyNow = new BusyDialog(con, true,false);
-//        busyNow.show();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
-                .build();
-
-        Api api = retrofit.create(Api.class);
-
-        Call<OfferDetails> call = api.getOfferData(offerId);
-
-        call.enqueue(new Callback<OfferDetails>() {
-            @Override
-            public void onResponse(Call<OfferDetails> call, Response<OfferDetails> response) {
-                OfferDetails offerDetails = response.body();
-
-
-                LinearLayoutManager layoutManager
-                        = new LinearLayoutManager(context, VERTICAL, false);
-//                recyclerviewOffer.setLayoutManager(layoutManager);
-//                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(con,
-//                        layoutManager.getOrientation());
-//                dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider_line));
-//
-//                recyclerviewOffer.addItemDecoration(dividerItemDecoration);
-//                adapter = new OfferAdapter(offerInfoList,R.layout.raw_offer,con);
-//
-//                recyclerviewOffer.setAdapter(adapter);;
-//                for (int i = 0; i < offerInfoList.size(); i++) {
-//                    //heroes[i] = heroList.get(i).getName_en();
-//                    Log.e("Company name",""+offerInfoList.get(i).getCompany_name());
-//                }
-
-
-                // busyNow.dismis();
-                //displaying the string array into listview
-
-            }
-
-            @Override
-            public void onFailure(Call<OfferDetails> call, Throwable t) {
-                //busyNow.dismis();
-            }
-
-        });
-    }
 
 
 }
